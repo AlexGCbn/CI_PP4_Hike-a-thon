@@ -1,0 +1,1 @@
+web: gunicorn hike_a_thon.wsgi
