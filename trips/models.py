@@ -52,6 +52,7 @@ class Request(models.Model):
     destination = models.CharField(max_length=200)
     description = models.TextField()
     submitted_on = models.DateTimeField(auto_now_add=True)
+    approved = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['submitted_on']

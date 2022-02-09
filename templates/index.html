@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-12 mt-3 left">
+            <div class="row">
+                <ul class="list-group">
+                    {% for trip in trip_list %}
+                    <li class="list-group-item m-3">
+                        <a href="{% url 'document_detail' document.slug %}">{{ trip.name }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <a href="{% url 'new_request' %}"><button class="btn btn-primary" type="button">Add request</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

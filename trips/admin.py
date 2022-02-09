@@ -22,6 +22,10 @@ class ReviewAdmin(admin.ModelAdmin):
 @admin.register(Request)
 class RequestAdmin(admin.ModelAdmin):
 
-    list_display = ('user', 'destination', 'submitted_on')
-    list_filter = ('user', 'submitted_on')
+    list_display = ('user', 'destination', 'submitted_on', 'approved')
+    list_filter = ('user', 'submitted_on', 'approved')
     search_fields = ['user']
+    actions = ['approve_request']
+
+    def approve_request(self, request, queryset):
+        queryset.update(approved=True)
