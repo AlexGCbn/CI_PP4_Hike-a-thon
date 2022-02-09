@@ -15,9 +15,13 @@ class TripAdmin(SummernoteModelAdmin):
 @admin.register(Review)
 class ReviewAdmin(admin.ModelAdmin):
 
-    list_display = ('user', 'trip', 'rating', 'submited_on')
-    list_filter = ('user', 'trip', 'rating', 'submited_on')
+    list_display = ('user', 'trip', 'rating', 'submitted_on')
+    list_filter = ('user', 'trip', 'rating', 'submitted_on')
     search_fields = ['user', 'trip']
 
 @admin.register(Request)
 class RequestAdmin(admin.ModelAdmin):
+
+    list_display = ('user', 'destination', 'submitted_on')
+    list_filter = ('user', 'submitted_on')
+    search_fields = ['user']
