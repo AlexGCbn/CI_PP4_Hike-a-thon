@@ -27,7 +27,7 @@ class Trip(models.Model):
         ordering = ['date_start']
 
     def __str__(self) -> str:
-        return f'{self.name}, starting on {self.date_start}, ending on {self.date_end}'
+        return f'{self.name.capitalize()} at {self.destination.capitalize()}'
 
     def registered_users_count(self):
         return self.registered_users.count()
