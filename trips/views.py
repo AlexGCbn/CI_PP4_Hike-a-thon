@@ -27,10 +27,11 @@ class TripDetail(View):
         for review in reviews:
             score = score + review.rating
             index += 1
-        score = score / index
+        if score != 0:
+            score = score / index
 
         return render(
-            request, 
+            request,
             'trip_detail.html',
             {
                 'trip': trip,

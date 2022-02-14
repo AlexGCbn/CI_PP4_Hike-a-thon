@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+        <h2>Name: {{ trip.name }}</h2>
+        <h3>Destination: {{ trip.destination }}</h3>
+        <h3>When: {{ trip.date_start }} to {{ trip.date_end }}</h3>
+        <h3>Price: {{ trip.price }}</h3>
+    </div>
+    <div class="row">
+        <h2>Reviews:</h2>
+        {% with reviews.count as total_reviews %}
+        {% if total_reviews == 0 %}
+        <h3>No reviews currently</h3>
+        {% else %}
+        {% for comment in reviews %}
+        <h3>{{ comment.comment }}</h3>
+        <h3>{{ comment.rating }}</h3>
+        {% endfor %}
+        {% endif %}
+        <h2>Total Rating:</h2>
+        {% if total_reviews == 0 %}
+        <h3>No ratings currently</h3>
+        {% else %}
+        <h3>{{ score }}</h3>
+        {% endif %}
+        {% endwith %}
+    </div>
+</div>
+
+{% endblock %}

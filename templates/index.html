@@ -10,7 +10,7 @@
                 <ul class="list-group">
                     {% for trip in trip_list %}
                     <li class="list-group-item m-3">
-                        <a href="#">{{ trip.name }}</a>
+                        <a href="{% url 'trip_detail' trip.slug %}">{{ trip.name }}</a>
                     </li>
                     {% endfor %}
                 </ul>
