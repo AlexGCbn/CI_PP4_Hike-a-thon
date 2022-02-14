@@ -57,6 +57,10 @@ SITE_ID = 1
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
+# Fix for error WinError 10061 on SignUp
+# https://stackoverflow.com/questions/41372476/django-python-no-connection-could-be-made-because-the-target-machine-actively
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
