@@ -12,12 +12,14 @@ class TripAdmin(SummernoteModelAdmin):
     search_fields = ['name', 'destination']
     summernote_fields = ('description')
 
+
 @admin.register(Review)
 class ReviewAdmin(admin.ModelAdmin):
 
     list_display = ('user', 'trip', 'rating', 'submitted_on')
     list_filter = ('user', 'trip', 'rating', 'submitted_on')
     search_fields = ['user', 'trip']
+
 
 @admin.register(Request)
 class RequestAdmin(admin.ModelAdmin):
