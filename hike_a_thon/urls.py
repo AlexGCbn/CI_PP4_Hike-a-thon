@@ -20,4 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('summernote/', include('django_summernote.urls')),
     path('', include('trips.urls'), name='trip_urls'),  # Includes the app URLs
+    path('accounts/', include('allauth.urls')),  # allauth URLs, used for authentication
 ]
