@@ -5,20 +5,30 @@
 <div class="container-fluid">
     <div class="row">
 
+        <div class="row text-center">
+            <h3>Upcoming trips:</h3>
+        </div>
+
+        <!-- Trip cards -->
         <div class="col-12 mt-3 left">
-            <div class="row">
-                <ul class="list-group">
-                    {% for trip in trip_list %}
-                    <li class="list-group-item m-3">
-                        <a href="{% url 'trip_detail' trip.slug %}">{{ trip.name }}</a>
-                    </li>
-                    {% endfor %}
-                </ul>
-            </div>
-            <div class="row">
-                <div class="col-3">
-                    <a href="#"><button class="btn btn-primary" type="button">Add request</button></a>
+            <div class="row m-2 gy-2">
+                {% for trip in trip_list %}
+
+                <div class="card text-center col-3 m-2">
+                    {% if "placeholder" in trip.image.url %}
+                    <img src="https://circasd.com/wp-content/uploads/2021/07/Travel.jpeg" width="100%"
+                        class="card-img-top" alt="...">
+                    {% else %}
+                    <img src=" {{ trip.image.url }}" width="100%" class="card-img-top" alt="...">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ trip.name }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ trip.destination }}</h6>
+                        <p>{{ trip.date_start }} - {{ trip.date_end }}</p>
+                        <a href="{% url 'trip_detail' trip.slug %}" class="btn btn-primary">Details</a>
+                    </div>
                 </div>
+                {% endfor %}
             </div>
         </div>
     </div>
