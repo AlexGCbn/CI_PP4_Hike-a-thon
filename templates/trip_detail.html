@@ -6,6 +6,7 @@
     <div class="row">
         <h2>Name: {{ trip.name }}</h2>
         <h3>Destination: {{ trip.destination }}</h3>
+        <h3>Description: {{ trip.description | safe }}</h3>
         <h3>When: {{ trip.date_start }} to {{ trip.date_end }}</h3>
         <h3>Price: {{ trip.price }}</h3>
     </div>

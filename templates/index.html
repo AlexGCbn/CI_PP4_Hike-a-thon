@@ -9,84 +9,43 @@
             <h3>Upcoming trips:</h3>
         </div>
 
-        <!-- Trip card carousel -->
-        <!-- Credits: https://mdbootstrap.com/snippets/jquery/alexpiffero-it/696600 -->
-        <div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel">
-
-            <!-- Controls -->
-            <div class="controls-top">
-                <a class="btn-floating" href="#multi-item-example" data-slide="prev"><i
-                        class="fas fa-chevron-left"></i></a>
-                <a class="btn-floating" href="#multi-item-example" data-slide="next"><i
-                        class="fas fa-chevron-right"></i></a>
-            </div>
-
-            <!--Indicators-->
-            <ol class="carousel-indicators">
-                <li data-target="#multi-item-example" data-slide-to="0" class="active"></li>
-                <li data-target="#multi-item-example" data-slide-to="1"></li>
-
-            </ol>
-
-            <!--Slides-->
-            <div class="carousel-inner" role="listbox">
-
-                <div class="carousel-item active">
-                    <!-- For loop with counter -->
-                    {% for trip in trip_list %}
-                    {{ forloop.counter }}
-                    <div class="col-md-3" style="float:left">
-                        <div class="card text-center mb-2">
-                            {% if "placeholder" in trip.image.url %}
-                            <img src="https://circasd.com/wp-content/uploads/2021/07/Travel.jpeg" width="100%"
-                                class="card-img-top" alt="...">
-                            {% else %}
-                            <img src=" {{ trip.image.url }}" width="100%" class="card-img-top" alt="...">
-                            {% endif %}
-                            <div class="card-body">
-                                <h5 class="card-title">{{ trip.name }}</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">{{ trip.destination }}</h6>
-                                <p>{{ trip.date_start }} - {{ trip.date_end }}</p>
-                                <a href="{% url 'trip_detail' trip.slug %}" class="btn btn-primary">Details</a>
-                            </div>
-                        </div>
-                    </div>
-                    {% if forloop.counter > 4 %}
-                    </div>
-                    <div class="carousel-item">
-
-                    {% endif %}
-                    {% empty %}
-                    <h2>No trips found</h2>
-                    {% endfor %}
-                </div>
-            </div>
-
-        </div>
-
         <!-- Trip cards -->
-        <!-- <div class="col-12 mt-3 left">
+        <div class="col-12 mt-3 left">
             <div class="row m-2 gy-2">
                 {% for trip in trip_list %}
 
-                <div class="card text-center col-3 m-2">
+                <div class="card text-center col-3 mx-2">
                     {% if "placeholder" in trip.image.url %}
-                    <img src="https://circasd.com/wp-content/uploads/2021/07/Travel.jpeg" width="100%"
-                        class="card-img-top" alt="...">
+                    <img src="https://circasd.com/wp-content/uploads/2021/07/Travel.jpeg" class="card-img-top"
+                        alt="...">
                     {% else %}
-                    <img src=" {{ trip.image.url }}" width="100%" class="card-img-top" alt="...">
+                    <img src=" {{ trip.image.url }}" class="card-img-top" alt="...">
                     {% endif %}
                     <div class="card-body">
                         <h5 class="card-title">{{ trip.name }}</h5>
                         <h6 class="card-subtitle mb-2 text-muted">{{ trip.destination }}</h6>
+                        <h6 class="card-text">{{ trip.description | safe }}</h6>
                         <p>{{ trip.date_start }} - {{ trip.date_end }}</p>
                         <a href="{% url 'trip_detail' trip.slug %}" class="btn btn-primary">Details</a>
                     </div>
                 </div>
                 {% endfor %}
             </div>
-        </div> -->
+        </div>
     </div>
+    {% if is_paginated %}
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+            <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; Back </a></li>
+            {% endif %}
+            {% if page_obj.has_next %}
+            <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> Next &raquo;</a></li>
+
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
 </div>
 
 {% endblock %}
