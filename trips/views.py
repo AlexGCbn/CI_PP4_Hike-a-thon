@@ -31,6 +31,7 @@ class TripDetail(View):
         if score != 0:
             score = score / index
 
+        registered = False
         if trip.registered_users.filter(id=request.user.id).exists():
             registered = True
 
@@ -40,7 +41,35 @@ class TripDetail(View):
             {
                 'trip': trip,
                 'reviews': reviews,
-                'score': score
+                'score': score,
+                'registered': registered
+            }
+        )
+
+    def post(self, request, slug, *args, **kwargs):
+        queryset = Trip.objects
+        trip = get_object_or_404(queryset, slug=slug)
+        reviews = trip.reviews.order_by('-submitted_on')
+        score = 0
+        index = 0
+        for review in reviews:
+            score = score + review.rating
+            index += 1
+        if score != 0:
+            score = score / index
+
+        registered = False
+        if trip.registered_users.filter(id=request.user.id).exists():
+            registered = True
+
+        return render(
+            request,
+            'trip_detail.html',
+            {
+                'trip': trip,
+                'reviews': reviews,
+                'score': score,
+                'registered': registered
             }
         )
 
@@ -54,4 +83,4 @@ class TripRegistration(View):
         else:
             trip.registered_users.add(request.user)
 
-            return HttpResponseRedirect(reverse('trip_detail', args=[slug]))
+        return HttpResponseRedirect(reverse('trip_detail', args=[slug]))
