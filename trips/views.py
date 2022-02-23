@@ -1,4 +1,5 @@
-from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic, View
 from .models import Trip
 
@@ -10,7 +11,7 @@ class TripList(generic.ListView):
     model = Trip
     queryset = Trip.objects.order_by('date_start')
     template_name = 'index.html'
-    paginate_by = 4
+    paginate_by = 3
 
 
 class TripDetail(View):
@@ -30,6 +31,9 @@ class TripDetail(View):
         if score != 0:
             score = score / index
 
+        if trip.registered_users.filter(id=request.user.id).exists():
+            registered = True
+
         return render(
             request,
             'trip_detail.html',
@@ -39,3 +43,15 @@ class TripDetail(View):
                 'score': score
             }
         )
+
+
+class TripRegistration(View):
+
+    def trip(self, request, slug, *args, **kwargs):
+        trip = get_object_or_404(Trip, slug=slug)
+        if trip.registered_users.filter(id=request.user.id).exists():
+            trip.registered_users.remove(request.user)
+        else:
+            trip.registered_users.add(request.user)
+
+            return HttpResponseRedirect(reverse('trip_detail', args=[slug]))

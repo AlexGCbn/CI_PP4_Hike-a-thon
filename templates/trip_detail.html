@@ -4,12 +4,21 @@
 
 <div class="container-fluid">
     <div class="row">
-        <h2>Name: {{ trip.name }}</h2>
-        <h3>Destination: {{ trip.destination }}</h3>
-        <h3>Description: {{ trip.description | safe }}</h3>
-        <h3>When: {{ trip.date_start }} to {{ trip.date_end }}</h3>
-        <h3>Price: {{ trip.price }}</h3>
+        <h2 class="text-center">{{ trip.name }}</h2>
+        <h3 class="text-center">{{ trip.destination }}</h3>
+        <div class="row border mx-auto trip-description">
+            <h3>{{ trip.description | safe }}</h3>
+            <h3>When: {{ trip.date_start }} to {{ trip.date_end }}</h3>
+            <h3>Price: {{ trip.price }}</h3>
+            <h6>Registered users: {{ trip.registered_users_count }}</h6>
+        </div>
     </div>
+    {% if not registered %}
+    <button class="btn btn-success">Register</button>
+    {% else %}
+    <button class="btn btn-danger">Deregister</button>
+    {% endif %}
+    <hr>
     <div class="row">
         <h2>Reviews:</h2>
         {% with reviews.count as total_reviews %}

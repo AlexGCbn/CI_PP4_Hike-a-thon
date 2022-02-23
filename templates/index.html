@@ -14,7 +14,7 @@
             <div class="row m-2 gy-2">
                 {% for trip in trip_list %}
 
-                <div class="card text-center col-3 mx-2">
+                <div class="card text-center col-sm-8 col-md-3 mx-auto">
                     {% if "placeholder" in trip.image.url %}
                     <img src="https://circasd.com/wp-content/uploads/2021/07/Travel.jpeg" class="card-img-top"
                         alt="...">
@@ -24,15 +24,16 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ trip.name }}</h5>
                         <h6 class="card-subtitle mb-2 text-muted">{{ trip.destination }}</h6>
-                        <h6 class="card-text">{{ trip.description | safe }}</h6>
+                        <!-- <h6 class="card-text">{{ trip.description | safe }}</h6> -->
                         <p>{{ trip.date_start }} - {{ trip.date_end }}</p>
-                        <a href="{% url 'trip_detail' trip.slug %}" class="btn btn-primary">Details</a>
+                        <a href="{% url 'trip_detail' trip.slug %}" class="btn btn-primary align-self-end">Details</a>
                     </div>
                 </div>
                 {% endfor %}
             </div>
         </div>
     </div>
+    <!-- Pagination credit: Code Institute -->
     {% if is_paginated %}
     <nav aria-label="Page navigation">
         <ul class="pagination justify-content-center">
