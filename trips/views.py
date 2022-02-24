@@ -76,7 +76,7 @@ class TripDetail(View):
 
 class TripRegistration(View):
 
-    def trip(self, request, slug, *args, **kwargs):
+    def post(self, request, slug, *args, **kwargs):
         trip = get_object_or_404(Trip, slug=slug)
         if trip.registered_users.filter(id=request.user.id).exists():
             trip.registered_users.remove(request.user)
