@@ -11,6 +11,8 @@ class TripAdmin(SummernoteModelAdmin):
     list_display = ('name', 'destination', 'date_start', 'date_end', 'price')
     search_fields = ['name', 'destination']
     summernote_fields = ('description')
+    # https://stackoverflow.com/questions/8043881/django-admin-manytomanyfield
+    filter_horizontal = ('registered_users',)
 
 
 @admin.register(Review)
