@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
+import datetime
 
 SCORE = (
     (1, 'Very Dissatisfied'),
@@ -17,7 +18,6 @@ class Trip(models.Model):
     destination = models.CharField(max_length=200)
     date_start = models.DateField(auto_now=False)
     date_end = models.DateField(auto_now=False)
-    # duration = models.IntegerField(default=0)
     description = models.TextField()
     image = CloudinaryField('image', default='placeholder')
     price = models.IntegerField(default=0)
@@ -31,6 +31,12 @@ class Trip(models.Model):
 
     def registered_users_count(self):
         return self.registered_users.count()
+
+    def is_completed(self):
+        if self.date_end <= datetime.date.today():
+            return True
+        else:
+            return False
 
 
 class Review(models.Model):

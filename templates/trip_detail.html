@@ -11,6 +11,11 @@
             <h3>When: {{ trip.date_start }} to {{ trip.date_end }}</h3>
             <h3>Price: {{ trip.price }}</h3>
             <h6>Registered users: {{ trip.registered_users_count }}</h6>
+            {% if trip.is_completed %}
+            <p>COMPLETE!</p>
+            {% else %}
+            <p>INCOMPLETE!</p>
+            {% endif %}
         </div>
     </div>
     {% if user.is_authenticated %}
