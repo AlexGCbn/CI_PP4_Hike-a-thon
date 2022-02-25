@@ -27,9 +27,12 @@ class TripDetail(View):
         reviews = trip.reviews.order_by('-submitted_on')
         score = 0
         index = 0
+        reviewed = False
         for review in reviews:
             score = score + review.rating
             index += 1
+            if review.user == request.user:
+                reviewed = True
         if score != 0:
             score = score / index
 
@@ -43,7 +46,7 @@ class TripDetail(View):
             {
                 'trip': trip,
                 'reviews': reviews,
-                'reviewed': False,
+                'reviewed': reviewed,
                 'score': score,
                 'registered': registered,
                 'review_form': ReviewForm()
@@ -56,9 +59,13 @@ class TripDetail(View):
         reviews = trip.reviews.order_by('-submitted_on')
         score = 0
         index = 0
+        reviewed = False
         for review in reviews:
             score = score + review.rating
             index += 1
+            # if review.user.filter(id=request.user.id).exists():
+            if review.user == request.user:
+                reviewed = True
         if score != 0:
             score = score / index
 
@@ -84,7 +91,7 @@ class TripDetail(View):
             {
                 'trip': trip,
                 'reviews': reviews,
-                'reviewed': True,
+                'reviewed': reviewed,
                 'score': score,
                 'registered': registered,
                 'review_form': ReviewForm()

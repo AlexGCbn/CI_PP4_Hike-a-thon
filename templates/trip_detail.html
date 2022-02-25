@@ -48,9 +48,9 @@
         {% if total_reviews == 0 %}
         <h3>No reviews currently</h3>
         {% else %}
-        {% for comment in reviews %}
-        <h3>{{ comment.comment }}</h3>
-        <h3>{{ comment.rating }}</h3>
+        {% for review in reviews %}
+        <h3>{{ review.comment }}</h3>
+        <h3>{{ review.rating }}</h3>
         {% endfor %}
         {% endif %}
         <h2>Total Rating:</h2>
