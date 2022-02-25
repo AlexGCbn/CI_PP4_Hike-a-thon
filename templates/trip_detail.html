@@ -49,8 +49,11 @@
         <h3>No reviews currently</h3>
         {% else %}
         {% for review in reviews %}
-        <h3>{{ review.comment }}</h3>
-        <h3>{{ review.rating }}</h3>
+        <h5>User {{ review.user.username }} commented:</h5>
+        <p>{{ review.comment }}</p>
+        <h5>Score:</h5>
+        <p>{{ review.rating }}</p>
+        <hr>
         {% endfor %}
         {% endif %}
         <h2>Total Rating:</h2>
