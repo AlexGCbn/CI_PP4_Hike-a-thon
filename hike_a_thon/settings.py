@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'cloudinary',
     'django_summernote',
+    'crispy_forms',
     'trips',
 ]
 
@@ -56,6 +57,8 @@ SITE_ID = 1
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # Fix for error WinError 10061 on SignUp
 # https://stackoverflow.com/questions/41372476/django-python-no-connection-could-be-made-because-the-target-machine-actively

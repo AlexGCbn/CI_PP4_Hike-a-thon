@@ -1,7 +1,9 @@
+from pdb import post_mortem
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic, View
-from .models import Trip
+from .models import Review, Trip
+from .forms import ReviewForm
 
 
 class TripList(generic.ListView):
@@ -41,8 +43,10 @@ class TripDetail(View):
             {
                 'trip': trip,
                 'reviews': reviews,
+                'reviewed': False,
                 'score': score,
-                'registered': registered
+                'registered': registered,
+                'review_form': ReviewForm()
             }
         )
 
@@ -62,14 +66,28 @@ class TripDetail(View):
         if trip.registered_users.filter(id=request.user.id).exists():
             registered = True
 
+        review_form = ReviewForm(data=request.POST)
+
+        if review_form.is_valid():
+            review_form.instance.email = request.user.email
+            review_form.instance.name = request.user.username
+            review = review_form.save(commit=False)
+            review.trip = trip
+            review.user = request.user
+            review.save()
+        else:
+            review_form = ReviewForm()
+
         return render(
             request,
             'trip_detail.html',
             {
                 'trip': trip,
                 'reviews': reviews,
+                'reviewed': True,
                 'score': score,
-                'registered': registered
+                'registered': registered,
+                'review_form': ReviewForm()
             }
         )
 

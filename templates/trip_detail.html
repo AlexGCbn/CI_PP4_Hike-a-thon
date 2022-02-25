@@ -1,6 +1,7 @@
 {% extends "base.html" %}
-
 {% block content %}
+
+{% load crispy_forms_tags %}
 
 <div class="container-fluid">
     <div class="row">
@@ -11,11 +12,6 @@
             <h3>When: {{ trip.date_start }} to {{ trip.date_end }}</h3>
             <h3>Price: {{ trip.price }}</h3>
             <h6>Registered users: {{ trip.registered_users_count }}</h6>
-            {% if trip.is_completed %}
-            <p>COMPLETE!</p>
-            {% else %}
-            <p>INCOMPLETE!</p>
-            {% endif %}
         </div>
     </div>
     {% if user.is_authenticated %}
@@ -32,6 +28,21 @@
 
     <hr>
     <div class="row">
+        {% if reviewed %}
+        <p>Thank you for your review!</p>
+        {% else %}
+        {% if user.is_authenticated and trip.is_completed %}
+        <!-- Should appear if trip is complete and user is authenticated -->
+
+        <h3>Create a review!</h3>
+        <form action="" method="post">
+            {{ review_form | crispy }}
+            {% csrf_token %}
+            <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+
+        {% endif %}
+        {% endif %}
         <h2>Reviews:</h2>
         {% with reviews.count as total_reviews %}
         {% if total_reviews == 0 %}
