@@ -14,7 +14,7 @@
             <h6>Registered users: {{ trip.registered_users_count }}</h6>
         </div>
     </div>
-    {% if user.is_authenticated %}
+    {% if user.is_authenticated and not trip.is_completed %}
     <form action="{% url 'trip_registration' trip.slug %}" method="post">
         {% csrf_token %}
         {% if registered %}
