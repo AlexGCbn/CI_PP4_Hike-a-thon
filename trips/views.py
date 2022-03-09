@@ -1,5 +1,5 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404, reverse
+from django.shortcuts import render, get_object_or_404, reverse, get_list_or_404
 from django.views import generic, View
 from .models import Review, Trip
 from .forms import ReviewForm
@@ -108,3 +108,23 @@ class TripRegistration(View):
             trip.registered_users.add(request.user)
 
         return HttpResponseRedirect(reverse('trip_detail', args=[slug]))
+
+
+class TripsRegistered(generic.TemplateView):
+    """
+    List view to show all user registered trips
+    """
+
+    # template_name = 'dashboard.html'
+
+    def get(self, request, *args, **kwargs):
+        queryset = Trip.objects
+        trips = get_list_or_404(queryset, registered_users=request.user)
+
+        return render(
+            request,
+            'dashboard.html',
+            {
+                'trips': trips,
+            }
+        )
