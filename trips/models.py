@@ -65,3 +65,15 @@ class Request(models.Model):
 
     def __str__(self) -> str:
         return f'User {self.user} requested the destination {self.destination} with a description of {self.description}'
+
+
+class ContactMessage(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_message')
+    messages = models.ManyToManyField(User, related_name='contact_messages', blank=False)
+    sent_on = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-sent_on']
+
+    def __str__(self) -> str:
+        return f'User {self.user} has sent messages to admin.'
