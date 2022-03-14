@@ -23,6 +23,19 @@
                 {% csrf_token %}
                 <button type="submit" class="btn btn-success">Submit</button>
             </form>
+            <h4>Previous requests:</h4>
+            <ul class="list-group">
+                {% for request in requests %}
+                <li class="list-group-item">
+                    {{ request.destination }} - {{ request.description }} -> 
+                    {% if request.approved %}
+                    <i class="fa-solid fa-circle-check"></i>
+                    {% else %}
+                    <i class="fa-solid fa-circle-xmark"></i>
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
         </div>
     </div>
 </div>
