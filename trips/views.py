@@ -1,8 +1,8 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, reverse, get_list_or_404
 from django.views import generic, View
-from .models import Review, Trip
-from .forms import ReviewForm
+from .models import Review, Trip, Request
+from .forms import ReviewForm, RequestForm
 
 
 class TripList(generic.ListView):
@@ -62,7 +62,6 @@ class TripDetail(View):
         for review in reviews:
             score = score + review.rating
             index += 1
-            # if review.user.filter(id=request.user.id).exists():
             if review.user == request.user:
                 reviewed = True
         if score != 0:
@@ -124,5 +123,45 @@ class TripsRegistered(generic.TemplateView):
             'dashboard.html',
             {
                 'trips': trips,
+            }
+        )
+
+
+class TripRequest(View):
+    """
+    Display form for user to make a trip request
+    Also GET user's requests
+    """
+
+    def get(self, request, *args, **kwargs):
+        queryset = Request.objects
+        requests = get_list_or_404(queryset, user=request.user)
+
+        return render(
+            request,
+            'request.html',
+            {
+                'requests': requests,
+                'request_form': RequestForm()
+            }
+        )
+
+    def post(self, request, *args, **kwargs):
+        queryset = Request.objects
+        requests = get_list_or_404(queryset, user=request.user)
+
+        request_form = RequestForm(data=request.POST)
+
+        if request_form.is_valid():
+            trip_request = request_form.save(commit=False)
+            trip_request.user = request.user
+            trip_request.save()
+
+        return render(
+            request,
+            'request.html',
+            {
+                'requests': requests,
+                'request_form': RequestForm()
             }
         )
