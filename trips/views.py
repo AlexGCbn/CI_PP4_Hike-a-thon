@@ -115,8 +115,6 @@ class TripsRegistered(generic.TemplateView):
     List view to show all user registered trips
     """
 
-    # template_name = 'dashboard.html'
-
     def get(self, request, *args, **kwargs):
         queryset = Trip.objects
         trips = get_list_or_404(queryset, registered_users=request.user)
