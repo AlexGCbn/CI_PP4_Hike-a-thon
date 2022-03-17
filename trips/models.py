@@ -67,13 +67,27 @@ class Request(models.Model):
         return f'User {self.user} requested the destination {self.destination} with a description of {self.description}'
 
 
+class ContactThread(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_message_thread')
+    name = models.CharField(max_length=500, unique=True, null=True)
+    slug = models.SlugField(max_length=500, unique=True, null=True)
+    created_on = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-created_on']
+
+    def __str__(self) -> str:
+        return f'User {self.user} has sent messages to admin.'
+
+
 class ContactMessage(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_message')
-    messages = models.ManyToManyField(User, related_name='contact_messages', blank=False)
+    thread = models.ForeignKey(ContactThread, on_delete=models.CASCADE, related_name='thread_message')
+    message = models.CharField(max_length=1000, blank=False, null=False)
     sent_on = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         ordering = ['-sent_on']
 
     def __str__(self) -> str:
-        return f'User {self.user} has sent messages to admin.'
+        return f'User {self.user} messaged the following: {self.message}'
