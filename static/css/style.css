@@ -1,5 +1,13 @@
+body {
+    background: linear-gradient(rgb(133, 200, 138), rgb(111, 178, 210));
+}
+
 main > .container-fluid {
     padding-top: 60px;
+}
+
+.navbar {
+    background-color: rgb(133, 200, 138);
 }
 
 .card-row {
@@ -14,4 +22,21 @@ main > .container-fluid {
 
 .trip-description {
     width: 80%;
+}
+
+.welcome-text {
+    background-color: rgb(238, 238, 238);
+    border: 3px solid rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+}
+
+.trip-cards {
+    background-color: rgb(238, 238, 238);
+    border: 3px solid rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    padding: 5%;
+}
+
+.footer {
+    background-color: rgb(235, 214, 113);
 }
