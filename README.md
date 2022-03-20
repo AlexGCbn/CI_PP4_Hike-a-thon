@@ -24,3 +24,6 @@ As an *admin/owner* I can *view trip requests* so that *I can get ideas about fu
 As an *admin/owner* I can *view a list of attendees* so that *I know who is joining each trip*
 As an *admin/owner* I can *view contact forms* so that *I have messages from users*
 As an *admin/owner* I can *reply to contact forms* so that *users get messages from me*
+
+### Colour palette:
+https://colorhunt.co/palette/6fb2d285c88aebd671eeeeee

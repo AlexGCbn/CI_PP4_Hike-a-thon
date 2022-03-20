@@ -4,13 +4,18 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col text-center mt-3 mx-5 welcome-text">
-            <h3>Welcome to Hike-a-Thon!</h3>
-            <p>
-                Want to share your love about hiking? You came to the right place! <br>
-                We organise hiking trips all around the world, for every level of hiker. It doesn't matter whether you are a beginner or pro, or whether you are fit or not, you can definitely find the hike for you! <br>
-                Browse our trips below and see if something catches your eye. If it does, you can either sign up and register for it, or contact us for more details.
-            </p>
+        <div class="col text-center mt-3 mx-2 mx-md-5 welcome-text">
+            <div class="welcome-container my-3 mx-4">
+                <h3>Welcome to Hike-a-Thon!</h3>
+                <p>
+                    Want to share your love about hiking? You came to the right place! <br>
+                    We organise hiking trips all around the world, for every level of hiker. It doesn't matter whether
+                    you are a beginner or pro, or whether you are fit or not, you can definitely find the hike for you!
+                    <br>
+                    Browse our trips below and see if something catches your eye. If it does, you can either sign up and
+                    register for it, or contact us for more details.
+                </p>
+            </div>
         </div>
     </div>
     <hr>
@@ -21,11 +26,11 @@
         </div>
 
         <!-- Trip cards -->
-        <div class="col-12 mt-3 left">
-            <div class="row m-2 gy-2 trip-cards">
+        <div class="col-12 mt-3 p-0 left">
+            <div class="row my-2 mx-2 mx-md-5 gy-2 trip-cards">
                 {% for trip in trip_list %}
 
-                <div class="card text-center col-sm-8 col-md-3 mx-auto">
+                <div class="card text-center col-sm-8 col-md-3 mx-auto p-1">
                     {% if "placeholder" in trip.image.url %}
                     <img src="https://circasd.com/wp-content/uploads/2021/07/Travel.jpeg" class="card-img-top"
                         alt="...">

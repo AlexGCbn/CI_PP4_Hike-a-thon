@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Nunito&display=swap');
 
 body {
-    background: linear-gradient(rgb(133, 200, 138), rgb(111, 178, 210));
+    background: linear-gradient(rgb(111, 178, 210), rgb(133, 200, 138));
     font-family: 'Nunito', sans-serif;
 }
 
@@ -10,11 +10,15 @@ main > .container-fluid {
 }
 
 .navbar {
-    background-color: rgb(133, 200, 138);
+    background-color: rgb(111, 178, 210);
 }
 
 .navbar-brand {
     font-family: 'Josefin Sans', sans-serif;
+}
+
+.card {
+    background-color: rgba(238, 238, 238, 0.7);
 }
 
 .card-row {
@@ -32,13 +36,13 @@ main > .container-fluid {
 }
 
 .welcome-text {
-    background-color: rgb(238, 238, 238);
+    background-color: rgba(238, 238, 238, 0.5);
     border: 3px solid rgba(0, 0, 0, 0.5);
     border-radius: 15px;
 }
 
 .trip-cards {
-    background-color: rgb(238, 238, 238);
+    background-color: rgba(238, 238, 238, 0.5);
     border: 3px solid rgba(0, 0, 0, 0.5);
     border-radius: 15px;
     padding: 5%;
