@@ -1,5 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Nunito&display=swap');
+
 body {
     background: linear-gradient(rgb(133, 200, 138), rgb(111, 178, 210));
+    font-family: 'Nunito', sans-serif;
 }
 
 main > .container-fluid {
@@ -8,6 +11,10 @@ main > .container-fluid {
 
 .navbar {
     background-color: rgb(133, 200, 138);
+}
+
+.navbar-brand {
+    font-family: 'Josefin Sans', sans-serif;
 }
 
 .card-row {
