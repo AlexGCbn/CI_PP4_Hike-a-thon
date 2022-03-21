@@ -15,6 +15,15 @@ class TripList(generic.ListView):
     paginate_by = 3
 
 
+class PastTrips(generic.ListView):
+    """
+    Past trips view
+    """
+    model = Trip
+    queryset = Trip.objects.order_by('date_start')
+    template_name = 'past_trips.html'
+    paginate_by = 3
+
 class TripDetail(View):
     """
     Trip detail view, to render each trip
