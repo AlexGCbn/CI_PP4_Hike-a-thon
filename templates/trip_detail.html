@@ -15,11 +15,13 @@
             <h6>Registered users: {{ trip.registered_users_count }}</h6>
             <hr>
             <h4>Trip total rating:</h4>
-            {% if total_reviews == 0 %}
+            {% with reviews.count as total_reviews %}
+            {% if total_reviews is 0 %}
             <h4>No ratings currently</h4>
             {% else %}
             <h4>{{ score }} / 5</h4>
             {% endif %}
+            {% endwith %}
 
             {% if user.is_authenticated and not trip.is_completed %}
             <form action="{% url 'trip_registration' trip.slug %}" method="post">

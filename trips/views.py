@@ -126,12 +126,18 @@ class TripsRegistered(generic.TemplateView):
     def get(self, request, *args, **kwargs):
         trips = Trip.objects.filter(registered_users=request.user)
         # trips = get_list_or_404(queryset, registered_users=request.user)
+        reviewed = []
+
+        for trip in trips:
+            if(trip.reviews.filter(user=request.user)):
+                reviewed += trip
 
         return render(
             request,
             'dashboard.html',
             {
                 'trips': trips,
+                'reviewed': reviewed,
             }
         )
 

@@ -7,18 +7,29 @@
             <h3>Options:</h3>
         </div>
         <div class="col">
-            <h3>Completed trips:</h3>
+            <h3>Registered trips:</h3>
         </div>
     </div>
     <div class="row">
         <div class="col-3">
-            <a href="{% url 'user_dashboard' %}">My completed trips</a><br>
+            <a href="{% url 'user_dashboard' %}">My registered trips</a><br>
             <a href="{% url 'trip_request' %}">Request trip</a>
         </div>
         <div class="col">
             <ul class="list-group">
                 {% for trip in trips %}
-                <li class="list-group-item"><a href="{% url 'trip_detail' trip.slug %}">{{ trip.name }}</a></li>
+                <li class="list-group-item"><a href="{% url 'trip_detail' trip.slug %}">
+                        {{ trip.name }}
+                    </a>
+                    {% if trip.is_completed %}
+                    <i class="fa-solid fa-circle-check"></i>
+                    {% endif %}
+                    {% if trip in reviewed %}
+                    {% for x in review.get_range %}
+                    <i class="fa-solid fa-star review-star"></i>
+                    {% endfor %}
+                    {% endif %}
+                </li>
                 {% endfor %}
             </ul>
         </div>
