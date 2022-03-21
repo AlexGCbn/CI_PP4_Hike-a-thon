@@ -9,27 +9,38 @@
         <h4 class="text-center">{{ trip.destination }}</h4>
         <div class="row mx-auto trip-description content-bubble">
             <h3 class="mb-4">{{ trip.description | safe }}</h3>
+            <hr>
             <h4>When: {{ trip.date_start }} to {{ trip.date_end }}</h4>
-            <h4>Price: {{ trip.price }}</h4>
+            <h4>Price: {{ trip.price }}€</h4>
             <h6>Registered users: {{ trip.registered_users_count }}</h6>
+            <hr>
+            <h4>Trip total rating:</h4>
+            {% if total_reviews == 0 %}
+            <h4>No ratings currently</h4>
+            {% else %}
+            <h4>{{ score }} / 5</h4>
+            {% endif %}
+
+            {% if user.is_authenticated and not trip.is_completed %}
+            <form action="{% url 'trip_registration' trip.slug %}" method="post">
+                {% csrf_token %}
+                {% if registered %}
+                <button type="submit" name="trip_id" value="{{trip.slug}}"
+                    class="btn btn-danger my-2">Deregister</button>
+                {% else %}
+                <button type="submit" name="trip_id" value="{{trip.slug}}"
+                    class="btn btn-success my-2">Register</button>
+                {% endif %}
+            </form>
+            {% endif %}
         </div>
     </div>
-    {% if user.is_authenticated and not trip.is_completed %}
-    <form action="{% url 'trip_registration' trip.slug %}" method="post">
-        {% csrf_token %}
-        {% if registered %}
-        <button type="submit" name="trip_id" value="{{trip.slug}}" class="btn btn-danger">Deregister</button>
-        {% else %}
-        <button type="submit" name="trip_id" value="{{trip.slug}}" class="btn btn-success">Register</button>
-        {% endif %}
-    </form>
-    {% endif %}
 
 
     <hr>
     <div class="row">
         {% if reviewed %}
-        <p>Thank you for your review!</p>
+        <p>You have already reviewed this trip. Thank you for that!</p>
         {% else %}
         {% if user.is_authenticated and trip.is_completed %}
         <!-- Should appear if trip is complete and user is authenticated -->
@@ -49,23 +60,19 @@
         <h3>No reviews currently</h3>
         {% else %}
         {% for review in reviews %}
-        <h5>User {{ review.user.username }} commented:</h5>
-        <p>{{ review.comment }}</p>
-        <h5>Score:</h5>
-        <!-- Review stars -->
-        <p>
-            {% for x in review.get_range %}
-            <i class="fa-solid fa-star"></i>
-            {% endfor %}
-        </p>
-        <hr>
+        <div class="review-container">
+            <h5><b>{{ review.user.username }}</b> reviewed:</h5>
+            <p class="review-bubble mx-1 mx-md-3 mx-lg-4 p-2">{{ review.comment }}</p>
+            <h5 class="m-0">Score:</h5>
+            <!-- Review stars -->
+            <p>
+                {% for x in review.get_range %}
+                <i class="fa-solid fa-star review-star"></i>
+                {% endfor %}
+            </p>
+            <hr>
+        </div>
         {% endfor %}
-        {% endif %}
-        <h2>Total Rating:</h2>
-        {% if total_reviews == 0 %}
-        <h3>No ratings currently</h3>
-        {% else %}
-        <h3>{{ score }}</h3>
         {% endif %}
         {% endwith %}
     </div>
