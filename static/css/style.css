@@ -35,19 +35,18 @@ main > .container-fluid {
     width: 80%;
 }
 
-.welcome-text {
-    background-color: rgba(238, 238, 238, 0.5);
-    border: 3px solid rgba(0, 0, 0, 0.5);
-    border-radius: 15px;
-}
-
 .trip-cards {
-    background-color: rgba(238, 238, 238, 0.5);
-    border: 3px solid rgba(0, 0, 0, 0.5);
-    border-radius: 15px;
     padding: 5%;
 }
 
 .footer {
     background-color: rgb(235, 214, 113);
+}
+
+/* Reusable styling classes */
+
+.content-bubble {
+    background-color: rgba(238, 238, 238, 0.5);
+    border: 3px solid rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
 }

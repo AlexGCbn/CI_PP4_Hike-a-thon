@@ -4,13 +4,13 @@
 {% load crispy_forms_tags %}
 
 <div class="container-fluid">
-    <div class="row">
+    <div class="row ">
         <h2 class="text-center">{{ trip.name }}</h2>
-        <h3 class="text-center">{{ trip.destination }}</h3>
-        <div class="row border mx-auto trip-description">
-            <h3>{{ trip.description | safe }}</h3>
-            <h3>When: {{ trip.date_start }} to {{ trip.date_end }}</h3>
-            <h3>Price: {{ trip.price }}</h3>
+        <h4 class="text-center">{{ trip.destination }}</h4>
+        <div class="row mx-auto trip-description content-bubble">
+            <h3 class="mb-4">{{ trip.description | safe }}</h3>
+            <h4>When: {{ trip.date_start }} to {{ trip.date_end }}</h4>
+            <h4>Price: {{ trip.price }}</h4>
             <h6>Registered users: {{ trip.registered_users_count }}</h6>
         </div>
     </div>

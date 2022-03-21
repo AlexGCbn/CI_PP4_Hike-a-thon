@@ -115,8 +115,8 @@ class TripsRegistered(generic.TemplateView):
     """
 
     def get(self, request, *args, **kwargs):
-        queryset = Trip.objects
-        trips = get_list_or_404(queryset, registered_users=request.user)
+        trips = Trip.objects.filter(registered_users=request.user)
+        # trips = get_list_or_404(queryset, registered_users=request.user)
 
         return render(
             request,
