@@ -1,13 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Nunito&display=swap');
 
 body {
+    padding-top: 70px;
     background: linear-gradient(rgb(111, 178, 210), rgb(133, 200, 138));
     font-family: 'Nunito', sans-serif;
 }
 
-main > .container-fluid {
+/* main > .container-fluid {
     padding-top: 60px;
-}
+} */
 
 .navbar {
     background-color: rgb(111, 178, 210);
@@ -15,6 +16,20 @@ main > .container-fluid {
 
 .navbar-brand {
     font-family: 'Josefin Sans', sans-serif;
+}
+
+.welcome-text {
+    background-image: url(/static/images/hero-image.jpg);
+    background-position: center;
+    background-size: cover;
+    border-radius: 15px;
+}
+
+.welcome-bubble {
+    color: rgba(255, 255, 255, 1);
+    background-color: rgba(39, 35, 35, 0.6);
+    border: 3px solid rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
 }
 
 .card {

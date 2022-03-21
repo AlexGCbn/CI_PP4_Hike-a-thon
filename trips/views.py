@@ -134,8 +134,8 @@ class TripRequest(View):
     """
 
     def get(self, request, *args, **kwargs):
-        queryset = Request.objects
-        requests = get_list_or_404(queryset, user=request.user)
+        requests = Request.objects.filter(user=request.user)
+        # requests = get_list_or_404(queryset, user=request.user)
 
         return render(
             request,

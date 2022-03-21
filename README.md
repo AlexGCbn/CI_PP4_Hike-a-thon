@@ -27,3 +27,11 @@ As an *admin/owner* I can *reply to contact forms* so that *users get messages f
 
 ### Colour palette:
 https://colorhunt.co/palette/6fb2d285c88aebd671eeeeee
+
+### Users & Passwords:
+
+Admin: admin - admin
+Test users:
+alexT - testpassword1
+georgeC - testpassword1
+Mike.F - testpassword1

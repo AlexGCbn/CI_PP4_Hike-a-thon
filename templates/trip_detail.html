@@ -8,7 +8,7 @@
         <h2 class="text-center">{{ trip.name }}</h2>
         <h4 class="text-center">{{ trip.destination }}</h4>
         <div class="row mx-auto trip-description content-bubble">
-            <h3 class="mb-4">{{ trip.description | safe }}</h3>
+            <h3 class="mb-4 mt-2">{{ trip.description | safe }}</h3>
             <hr>
             <h4>When: {{ trip.date_start }} to {{ trip.date_end }}</h4>
             <h4>Price: {{ trip.price }}€</h4>
@@ -42,7 +42,7 @@
         {% if reviewed %}
         <p>You have already reviewed this trip. Thank you for that!</p>
         {% else %}
-        {% if user.is_authenticated and trip.is_completed %}
+        {% if user.is_authenticated and trip.is_completed and registered %}
         <!-- Should appear if trip is complete and user is authenticated -->
 
         <h3>Create a review!</h3>

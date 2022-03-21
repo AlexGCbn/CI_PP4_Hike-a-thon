@@ -33,7 +33,7 @@ class Trip(models.Model):
         return self.registered_users.count()
 
     def is_completed(self):
-        if self.date_end <= datetime.date.today():
+        if self.date_start <= datetime.date.today():
             return True
         else:
             return False
