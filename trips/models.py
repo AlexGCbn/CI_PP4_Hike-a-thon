@@ -52,6 +52,13 @@ class Review(models.Model):
     def __str__(self) -> str:
         return f'User {self.user} commented {self.comment} with a rating of {self.rating}'
 
+    def get_range(self) -> list:
+        """
+        Returns list (range) of the rating, used to display stars.
+        Credits: https://stackoverflow.com/questions/2969649/how-to-loop-x-times-in-django
+        """
+        return range(self.rating)
+
 
 class Request(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_request')

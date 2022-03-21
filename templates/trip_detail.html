@@ -52,7 +52,12 @@
         <h5>User {{ review.user.username }} commented:</h5>
         <p>{{ review.comment }}</p>
         <h5>Score:</h5>
-        <p>{{ review.rating }}</p>
+        <!-- Review stars -->
+        <p>
+            {% for x in review.get_range %}
+            <i class="fa-solid fa-star"></i>
+            {% endfor %}
+        </p>
         <hr>
         {% endfor %}
         {% endif %}
