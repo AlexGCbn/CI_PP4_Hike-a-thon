@@ -18,6 +18,7 @@
 
 <body class="d-flex flex-column min-vh-100">
     <!-- Navigation -->
+    <!-- Active page credit: https://stackoverflow.com/questions/39639264/django-highlight-current-page-in-navbar -->
     <nav class="navbar navbar-expand-md navbar-light fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="{% url 'home' %}"><i class="fa-solid fa-mountain"></i> Hike-a-Thon <i
@@ -31,24 +32,36 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-md-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+                            {% with url_name=request.resolver_match.url_name %}
+                            <a class="nav-link {% if url_name == 'home' %}active{% endif %}" aria-current="page" href="{% url 'home' %}">Home</a>
+                            {% endwith %}
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="{% url 'past_trips' %}">Past trips</a>
+                            {% with url_name=request.resolver_match.url_name %}
+                            <a class="nav-link {% if url_name == 'past_trips' %}active{% endif %}" aria-current="page" href="{% url 'past_trips' %}">Past trips</a>
+                            {% endwith %}
                         </li>
                         {% if user.is_authenticated %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'user_dashboard' %}">Dashboard</a>
+                            {% with url_name=request.resolver_match.url_name %}
+                            <a class="nav-link {% if url_name == 'user_dashboard' %}active{% endif %}" href="{% url 'user_dashboard' %}">Dashboard</a>
+                            {% endwith %}
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
+                            {% with url_name=request.resolver_match.url_name %}
+                            <a class="nav-link {% if url_name == 'account_logout' %}active{% endif %}" href="{% url 'account_logout' %}">Logout</a>
+                            {% endwith %}
                         </li>
                         {% else %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'account_login' %}">Login</a>
+                            {% with url_name=request.resolver_match.url_name %}
+                            <a class="nav-link {% if url_name == 'account_login' %}active{% endif %}" href="{% url 'account_login' %}">Login</a>
+                            {% endwith %}
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'account_signup' %}">Register</a>
+                            {% with url_name=request.resolver_match.url_name %}
+                            <a class="nav-link {% if url_name == 'account_signup' %}active{% endif %}" href="{% url 'account_signup' %}">Register</a>
+                            {% endwith %}
                         </li>
                         {% endif %}
                     </ul>
