@@ -23,12 +23,18 @@
             <ul class="list-group">
                 {% for request in requests %}
                 <li class="list-group-item">
-                    {{ request.destination }} - {{ request.description }} -> 
-                    {% if request.approved %}
-                    <i class="fa-solid fa-circle-check"></i>
-                    {% else %}
-                    <i class="fa-solid fa-circle-xmark"></i>
-                    {% endif %}
+                    <div class="row">
+                        <div class="col-11">
+                            {{ request.destination|truncatechars:20 }} - {{ request.description|truncatechars:50 }}
+                        </div>
+                        <div class="col">
+                            {% if request.approved %}
+                            <i class="fa-solid fa-circle-check"></i>
+                            {% else %}
+                            <i class="fa-solid fa-circle-xmark"></i>
+                            {% endif %}
+                        </div>
+                    </div>
                 </li>
                 {% endfor %}
             </ul>

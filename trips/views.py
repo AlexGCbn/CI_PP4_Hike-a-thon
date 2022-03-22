@@ -166,8 +166,7 @@ class TripRequest(View):
         )
 
     def post(self, request, *args, **kwargs):
-        queryset = Request.objects
-        requests = get_list_or_404(queryset, user=request.user)
+        requests = Request.objects.filter(user=request.user)
 
         request_form = RequestForm(data=request.POST)
 
