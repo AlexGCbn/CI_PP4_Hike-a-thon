@@ -19,7 +19,7 @@
             {% if total_reviews is 0 %}
             <h4>No ratings currently</h4>
             {% else %}
-            <h4>{{ score }} / 5</h4>
+            <h4>{{ score|floatformat }} / 5</h4>
             {% endif %}
             {% endwith %}
 
@@ -62,16 +62,32 @@
         <h3>No reviews currently</h3>
         {% else %}
         {% for review in reviews %}
-        <div class="review-container">
+        <div class="review-container">{% if review.user == request.user %}
+            <h5><b>You</b> reviewed:</h5>
+            {% else %}
             <h5><b>{{ review.user.username }}</b> reviewed:</h5>
+            {% endif %}
             <p class="review-bubble mx-1 mx-md-3 mx-lg-4 p-2">{{ review.comment }}</p>
-            <h5 class="m-0">Score:</h5>
-            <!-- Review stars -->
-            <p>
-                {% for x in review.get_range %}
-                <i class="fa-solid fa-star review-star"></i>
-                {% endfor %}
-            </p>
+            <div class="row">
+                <div class="col-8">
+                    <h5 class="m-0">Score:</h5>
+                    <!-- Review stars -->
+                    <p>
+                        {% for x in review.get_range %}
+                        <i class="fa-solid fa-star review-star"></i>
+                        {% endfor %}
+                    </p>
+                </div>
+                <div class="col text-end">
+                    {% if review.user == request.user %}
+                    <form action="{% url 'delete_review' trip.slug %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" name="trip_id" value="{{trip.slug}}"
+                            class="btn btn-danger my-2">Delete</button>
+                    </form>
+                    {% endif %}
+                </div>
+            </div>
             <hr>
         </div>
         {% endfor %}

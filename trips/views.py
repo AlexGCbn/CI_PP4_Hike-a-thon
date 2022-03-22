@@ -65,45 +65,47 @@ class TripDetail(View):
         queryset = Trip.objects
         trip = get_object_or_404(queryset, slug=slug)
         reviews = trip.reviews.order_by('-submitted_on')
-        score = 0
-        index = 0
+        # score = 0
+        # index = 0
         reviewed = False
         for review in reviews:
-            score = score + review.rating
-            index += 1
+            # score = score + review.rating
+            # index += 1
             if review.user == request.user:
                 reviewed = True
-        if score != 0:
-            score = score / index
+        # if score != 0:
+        #     score = score / index
 
-        registered = False
-        if trip.registered_users.filter(id=request.user.id).exists():
-            registered = True
+        # registered = False
+        # if trip.registered_users.filter(id=request.user.id).exists():
+        #     registered = True
 
         review_form = ReviewForm(data=request.POST)
+        if (not reviewed):
+            if review_form.is_valid():
+                review_form.instance.email = request.user.email
+                review_form.instance.name = request.user.username
+                review = review_form.save(commit=False)
+                review.trip = trip
+                review.user = request.user
+                review.save()
+            else:
+                review_form = ReviewForm()
 
-        if review_form.is_valid():
-            review_form.instance.email = request.user.email
-            review_form.instance.name = request.user.username
-            review = review_form.save(commit=False)
-            review.trip = trip
-            review.user = request.user
-            review.save()
-        else:
-            review_form = ReviewForm()
+        return HttpResponseRedirect(reverse('trip_detail', args=[slug]))
 
-        return render(
-            request,
-            'trip_detail.html',
-            {
-                'trip': trip,
-                'reviews': reviews,
-                'reviewed': reviewed,
-                'score': score,
-                'registered': registered,
-                'review_form': ReviewForm()
-            }
-        )
+        # return render(
+        #     request,
+        #     'trip_detail.html',
+        #     {
+        #         'trip': trip,
+        #         'reviews': reviews,
+        #         'reviewed': reviewed,
+        #         'score': score,
+        #         'registered': registered,
+        #         'review_form': ReviewForm()
+        #     }
+        # )
 
 
 class TripRegistration(View):
@@ -118,26 +120,29 @@ class TripRegistration(View):
         return HttpResponseRedirect(reverse('trip_detail', args=[slug]))
 
 
+class DeleteReview(View):
+
+    def post(self, request, slug, *args, **kwargs):
+        trip = get_object_or_404(Trip, slug=slug)
+        review = trip.reviews.filter(user=request.user)
+        review.delete()
+
+        return HttpResponseRedirect(reverse('trip_detail', args=[slug]))
+
+
 class TripsRegistered(generic.TemplateView):
     """
     List view to show all user registered trips
     """
 
     def get(self, request, *args, **kwargs):
-        trips = Trip.objects.filter(registered_users=request.user)
-        # trips = get_list_or_404(queryset, registered_users=request.user)
-        reviewed = []
-
-        for trip in trips:
-            if(trip.reviews.filter(user=request.user)):
-                reviewed += trip
+        trips = Trip.objects.order_by('-date_start').filter(registered_users=request.user)
 
         return render(
             request,
             'dashboard.html',
             {
                 'trips': trips,
-                'reviewed': reviewed,
             }
         )
 
@@ -150,7 +155,6 @@ class TripRequest(View):
 
     def get(self, request, *args, **kwargs):
         requests = Request.objects.filter(user=request.user)
-        # requests = get_list_or_404(queryset, user=request.user)
 
         return render(
             request,

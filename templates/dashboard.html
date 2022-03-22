@@ -24,11 +24,6 @@
                     {% if trip.is_completed %}
                     <i class="fa-solid fa-circle-check"></i>
                     {% endif %}
-                    {% if trip in reviewed %}
-                    {% for x in review.get_range %}
-                    <i class="fa-solid fa-star review-star"></i>
-                    {% endfor %}
-                    {% endif %}
                 </li>
                 {% endfor %}
             </ul>
