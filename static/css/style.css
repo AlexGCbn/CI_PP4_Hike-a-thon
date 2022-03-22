@@ -82,3 +82,31 @@ body {
     /* border-top: 2px solid rgba(0, 0, 0, 0.5); */
     border-radius: 10px;
 }
+
+.dash-menu {
+    list-style: none;
+}
+
+.dash-menu-item {
+    margin: 1rem 0;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+}
+
+.dash-menu-item:hover {
+    color: rgb(0, 0, 0);
+    border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+}
+
+.completed-trip-item {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.trip-list-link {
+    color: rgba(255, 255, 255, 1);
+    text-decoration: none;
+}
+
+.done-check {
+    color: rgb(0, 255, 17);
+}

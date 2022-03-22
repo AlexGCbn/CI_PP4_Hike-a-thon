@@ -3,27 +3,31 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-3">
+        <div class="col-12 col-md-3">
             <h3>Options:</h3>
+            <ul class="dash-menu">
+                <li class="my-1 my-md-2"><a href="{% url 'user_dashboard' %}" class="dash-menu-item">My registered
+                        trips</a></li>
+                <li class="my-1 my-md-2"><a href="{% url 'trip_request' %}" class="dash-menu-item">Request trip</a></li>
+            </ul>
         </div>
-        <div class="col">
+        <div class="col-12 col-md-7">
             <h3>Registered trips:</h3>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-3">
-            <a href="{% url 'user_dashboard' %}">My registered trips</a><br>
-            <a href="{% url 'trip_request' %}">Request trip</a>
-        </div>
-        <div class="col">
             <ul class="list-group">
                 {% for trip in trips %}
-                <li class="list-group-item"><a href="{% url 'trip_detail' trip.slug %}">
-                        {{ trip.name }}
-                    </a>
-                    {% if trip.is_completed %}
-                    <i class="fa-solid fa-circle-check"></i>
-                    {% endif %}
+                <li class="list-group-item mt-1 completed-trip-item">
+                    <div class="row">
+                        <div class="col-11">
+                            <a href="{% url 'trip_detail' trip.slug %}" class="trip-list-link">
+                                {{ trip.name }}
+                            </a>
+                        </div>
+                        <div class="col">
+                            {% if trip.is_completed %}
+                            <i class="fa-solid fa-circle-check done-check"></i>
+                            {% endif %}
+                        </div>
+                    </div>
                 </li>
                 {% endfor %}
             </ul>

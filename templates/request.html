@@ -5,19 +5,15 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-3">
+        <div class="col-12 col-md-3">
             <h3>Options:</h3>
+            <ul class="dash-menu">
+                <li class="my-1 my-md-2"><a href="{% url 'user_dashboard' %}" class="dash-menu-item">My registered
+                        trips</a></li>
+                <li class="my-1 my-md-2"><a href="{% url 'trip_request' %}" class="dash-menu-item">Request trip</a></li>
+            </ul>
         </div>
-        <div class="col">
-            <h3>Make a request:</h3>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-3">
-            <a href="{% url 'user_dashboard' %}">My completed trips</a><br>
-            <a href="#">Request trip</a>
-        </div>
-        <div class="col">
+        <div class="col-12 col-md-7">
             <form action="" method="post">
                 {{ request_form | crispy }}
                 {% csrf_token %}
