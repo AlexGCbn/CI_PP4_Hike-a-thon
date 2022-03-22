@@ -1,3 +1,5 @@
+from xml.dom import ValidationErr
+from django.forms import ValidationError
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, reverse, get_list_or_404
 from django.views import generic, View
@@ -171,6 +173,8 @@ class TripRequest(View):
         request_form = RequestForm(data=request.POST)
 
         if request_form.is_valid():
+            # destination = request_form.cleaned_data['destination']
+            # if not Request.objects.filter(destination=destination).exists():
             trip_request = request_form.save(commit=False)
             trip_request.user = request.user
             trip_request.save()
