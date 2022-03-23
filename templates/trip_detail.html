@@ -78,16 +78,23 @@
                         {% endfor %}
                     </p>
                 </div>
-                <div class="col text-end">
-                    {% if review.user == request.user %}
-                    <button><a href="{% url 'edit_review' review.id %}" class="btn btn-success my-2">Edit</a></button>
-                    <form action="{% url 'delete_review' trip.slug %}" method="post">
-                        {% csrf_token %}
-                        <button type="submit" name="trip_id" value="{{trip.slug}}"
-                            class="btn btn-danger my-2">Delete</button>
-                    </form>
-                    {% endif %}
+                {% if review.user == request.user %}
+                <div class="col">
+                    <div class="row">
+                        <div class="col text-end">
+                            <button class="btn btn-success my-2 p-0"><a
+                                    href="{% url 'edit_review' review.id %}" class="btn btn-success border-0">Edit</a></button>
+                        </div>
+                        <div class="col text-start">
+                            <form action="{% url 'delete_review' trip.slug %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" name="trip_id" value="{{trip.slug}}"
+                                    class="btn btn-danger my-2">Delete</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
+                {% endif %}
             </div>
             <hr>
         </div>
