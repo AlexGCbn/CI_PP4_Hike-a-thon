@@ -1,5 +1,3 @@
-from xml.dom import ValidationErr
-from django.forms import ValidationError
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, reverse, get_list_or_404
 from django.views import generic, View
@@ -25,6 +23,7 @@ class PastTrips(generic.ListView):
     queryset = Trip.objects.order_by('date_start')
     template_name = 'past_trips.html'
     paginate_by = 3
+
 
 class TripDetail(View):
     """
@@ -67,20 +66,10 @@ class TripDetail(View):
         queryset = Trip.objects
         trip = get_object_or_404(queryset, slug=slug)
         reviews = trip.reviews.order_by('-submitted_on')
-        # score = 0
-        # index = 0
         reviewed = False
         for review in reviews:
-            # score = score + review.rating
-            # index += 1
             if review.user == request.user:
                 reviewed = True
-        # if score != 0:
-        #     score = score / index
-
-        # registered = False
-        # if trip.registered_users.filter(id=request.user.id).exists():
-        #     registered = True
 
         review_form = ReviewForm(data=request.POST)
         if (not reviewed):
@@ -95,19 +84,6 @@ class TripDetail(View):
                 review_form = ReviewForm()
 
         return HttpResponseRedirect(reverse('trip_detail', args=[slug]))
-
-        # return render(
-        #     request,
-        #     'trip_detail.html',
-        #     {
-        #         'trip': trip,
-        #         'reviews': reviews,
-        #         'reviewed': reviewed,
-        #         'score': score,
-        #         'registered': registered,
-        #         'review_form': ReviewForm()
-        #     }
-        # )
 
 
 class TripRegistration(View):

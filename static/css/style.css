@@ -12,10 +12,15 @@ body {
 
 .navbar {
     background-color: rgb(111, 178, 210);
+    border-bottom: 1px solid rgba(238, 238, 238, 0.5);
 }
 
 .navbar-brand {
     font-family: 'Josefin Sans', sans-serif;
+}
+
+.nav-link {
+    font-weight: 600;
 }
 
 .welcome-text {
