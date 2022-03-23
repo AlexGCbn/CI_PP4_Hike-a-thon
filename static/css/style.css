@@ -115,3 +115,15 @@ body {
 .done-check {
     color: rgb(0, 255, 17);
 }
+
+.footer-text {
+    margin: 5px;
+    font-size: 80%;
+}
+
+.footer-text a {
+    font-size: 100%;
+    margin: 0 10px;
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+}
