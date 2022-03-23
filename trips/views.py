@@ -187,3 +187,16 @@ class TripRequest(View):
                 'request_form': RequestForm()
             }
         )
+
+
+class EditReview(generic.UpdateView):
+    """
+    Allows user to edit their review
+    """
+
+    model = Review
+    fields = ['comment', 'rating']
+    template_name = 'edit_review_form.html'
+
+    def post(self, request, *args, **kwargs):
+        return HttpResponseRedirect(request.path)

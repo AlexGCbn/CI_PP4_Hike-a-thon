@@ -80,6 +80,7 @@
                 </div>
                 <div class="col text-end">
                     {% if review.user == request.user %}
+                    <button><a href="{% url 'edit_review' review.id %}" class="btn btn-success my-2">Edit</a></button>
                     <form action="{% url 'delete_review' trip.slug %}" method="post">
                         {% csrf_token %}
                         <button type="submit" name="trip_id" value="{{trip.slug}}"

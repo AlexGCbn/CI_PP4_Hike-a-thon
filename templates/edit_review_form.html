@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+<div class="container-fluid">
+    <div class="row">
+        <h4>Update your review of trip {{ trip.name }}</h4>
+    </div>
+
+    <div class="row">
+        <form action="" method="post">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

@@ -9,4 +9,5 @@ urlpatterns = [
     path('<slug:slug>/', views.TripDetail.as_view(), name='trip_detail'),  # Trip detail URL
     path('register/<slug:slug>', views.TripRegistration.as_view(), name='trip_registration'),  # Trip registration URL
     path('delete_review/<slug:slug>', views.DeleteReview.as_view(), name='delete_review'),  # Trip registration URL
+    path('edit/<pk>', views.EditReview.as_view(), name='edit_review'),  # Edit review URL
 ]
