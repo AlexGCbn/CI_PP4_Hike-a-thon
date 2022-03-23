@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import ContactThread, Trip, Review, Request, ContactThread
+from .models import Trip, Review, Request
 from django_summernote.admin import SummernoteModelAdmin
 
 
@@ -33,11 +33,3 @@ class RequestAdmin(admin.ModelAdmin):
 
     def approve_request(self, request, queryset):
         queryset.update(approved=True)
-
-
-@admin.register(ContactThread)
-class MessageAdmin(admin.ModelAdmin):
-
-    list_display = ('user', 'created_on')
-    list_filter = ('user', 'created_on')
-    search_fields = ['user', 'created_on']

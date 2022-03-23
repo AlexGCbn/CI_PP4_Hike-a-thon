@@ -62,8 +62,8 @@ class Review(models.Model):
 
 class Request(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_request')
-    destination = models.CharField(max_length=200)
-    description = models.TextField()
+    destination = models.CharField(max_length=50)
+    description = models.TextField(max_length=200)
     submitted_on = models.DateTimeField(auto_now_add=True)
     approved = models.BooleanField(default=False)
 
@@ -72,29 +72,3 @@ class Request(models.Model):
 
     def __str__(self) -> str:
         return f'User {self.user} requested the destination {self.destination} with a description of {self.description}'
-
-
-class ContactThread(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_message_thread')
-    name = models.CharField(max_length=500, unique=True, null=True)
-    slug = models.SlugField(max_length=500, unique=True, null=True)
-    created_on = models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-        ordering = ['-created_on']
-
-    def __str__(self) -> str:
-        return f'User {self.user} has sent messages to admin.'
-
-
-class ContactMessage(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_message')
-    thread = models.ForeignKey(ContactThread, on_delete=models.CASCADE, related_name='thread_message')
-    message = models.CharField(max_length=1000, blank=False, null=False)
-    sent_on = models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-        ordering = ['-sent_on']
-
-    def __str__(self) -> str:
-        return f'User {self.user} messaged the following: {self.message}'

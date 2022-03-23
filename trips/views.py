@@ -132,7 +132,7 @@ class TripRequest(View):
     """
 
     def get(self, request, *args, **kwargs):
-        requests = Request.objects.filter(user=request.user)
+        requests = Request.objects.order_by('-submitted_on').filter(user=request.user)[:5]
 
         return render(
             request,
@@ -173,7 +173,7 @@ class EditReview(generic.UpdateView):
     model = Review
     fields = ['comment', 'rating']
     template_name = 'edit_review_form.html'
-    
+
     def get_success_url(self) -> str:
         """
         Returns url to use if edit is successful
