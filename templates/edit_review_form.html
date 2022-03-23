@@ -10,7 +10,7 @@
 
     <div class="row">
         <form action="" method="post">
-            {{ form.as_p }}
+            {{ form|crispy }}
             {% csrf_token %}
             <button type="submit" class="btn btn-success">Submit</button>
         </form>

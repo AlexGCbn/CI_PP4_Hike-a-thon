@@ -197,6 +197,11 @@ class EditReview(generic.UpdateView):
     model = Review
     fields = ['comment', 'rating']
     template_name = 'edit_review_form.html'
+    
+    def get_success_url(self) -> str:
+        """
+        Returns url to use if edit is successful
+        """
 
-    def post(self, request, *args, **kwargs):
-        return HttpResponseRedirect(request.path)
+        slug = self.object.trip.slug
+        return reverse('trip_detail', args=[slug])
