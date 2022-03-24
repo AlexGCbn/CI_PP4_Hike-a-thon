@@ -12,7 +12,6 @@
     <div class="col-12 mt-3 p-0 left">
         <div class="row my-2 my-md-4 mx-2 mx-md-5 gy-2 trip-cards content-bubble">
             {% for trip in trip_list %}
-            {% if trip.is_completed %}
             <div class="card text-center col-sm-8 col-md-3 mx-auto p-1">
                 {% if "placeholder" in trip.image.url %}
                 <img src="https://circasd.com/wp-content/uploads/2021/07/Travel.jpeg" class="card-img-top" alt="...">
@@ -27,7 +26,6 @@
                     <a href="{% url 'trip_detail' trip.slug %}" class="btn btn-primary align-self-end">Details</a>
                 </div>
             </div>
-            {% endif %}
             {% endfor %}
         </div>
     </div>
