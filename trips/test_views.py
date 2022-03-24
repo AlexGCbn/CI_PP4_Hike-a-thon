@@ -44,11 +44,26 @@ class TestViews(TestCase):
         response = self.client.post(f'/{trip.slug}/', {'comment': 'This is a comment', 'rating': 3})
         self.assertRedirects(response, f'/{trip.slug}/')
 
+    def test_post_trip_review_bad(self):
+        self.client.login(username='test_user', password='test_password')
+        user = User.objects.get(username='test_user')
+        trip = Trip.objects.get(name='Test Trip')
+        trip.registered_users.add(user)
+        Review.objects.create(trip=trip, user=user, comment="Testing score", rating=5)
+        response = self.client.post(f'/{trip.slug}/', {'comment': 'Test', 'rating': 3})
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'trip_detail.html')
+        self.assertEqual(response.context['reviewed'], False)
+        self.assertEqual(response.context['score'], 5)
+
     def test_trip_registration(self):
         self.client.login(username='test_user', password='test_password')
         trip = Trip.objects.get(name='Test Trip')
         response = self.client.post(f'/register/{trip.slug}')
         self.assertRedirects(response, f'/{trip.slug}/')
+        response = self.client.post(f'/register/{trip.slug}')
+        registered_users = trip.registered_users.all()
+        self.assertQuerysetEqual(registered_users, [])
 
     def test_delete_review(self):
         user = self.client.login(username='test_user', password='test_password')
@@ -80,6 +95,13 @@ class TestViews(TestCase):
         self.assertRedirects(response, '/dashboard/request/')
         request = Request.objects.get(destination='Africa')
         self.assertEqual(request.destination, 'Africa')
+
+    def test_trip_request_bad(self):
+        self.client.login(username='test_user', password='test_password')
+        response = self.client.post('/dashboard/request/', {'destination': '', 'description': ''})
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'request.html')
+
 
     def test_edit_review(self):
         user = self.client.login(username='test_user', password='test_password')

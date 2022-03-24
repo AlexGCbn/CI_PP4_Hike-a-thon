@@ -76,13 +76,8 @@ class TripDetail(View):
         for review in reviews:
             score = score + review.rating
             index += 1
-            if review.user == request.user:
-                reviewed = True
         if score != 0:
             score = score / index
-        for review in reviews:
-            if review.user == request.user:
-                reviewed = True
 
         if trip.registered_users.filter(id=request.user.id).exists():
             registered = True
