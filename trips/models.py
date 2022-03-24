@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
+from .validators import validate_comment
 import datetime
 
 SCORE = (
@@ -42,7 +43,7 @@ class Trip(models.Model):
 class Review(models.Model):
     trip = models.ForeignKey(Trip, on_delete=models.CASCADE, related_name='reviews')
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_reviews')
-    comment = models.TextField(blank=True)
+    comment = models.TextField(blank=False, validators=[validate_comment])
     rating = models.IntegerField(choices=SCORE, default=3)
     submitted_on = models.DateTimeField(auto_now_add=True)
 

@@ -3,6 +3,7 @@ from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic, View
 from .models import Review, Trip, Request
 from .forms import ReviewForm, RequestForm
+from django import forms
 import datetime
 
 
@@ -50,6 +51,8 @@ class TripDetail(View):
         if trip.registered_users.filter(id=request.user.id).exists():
             registered = True
 
+        review_form = ReviewForm()
+
         return render(
             request,
             'trip_detail.html',
@@ -59,7 +62,7 @@ class TripDetail(View):
                 'reviewed': reviewed,
                 'score': score,
                 'registered': registered,
-                'review_form': ReviewForm()
+                'review_form': review_form
             }
         )
 
@@ -67,10 +70,22 @@ class TripDetail(View):
         queryset = Trip.objects
         trip = get_object_or_404(queryset, slug=slug)
         reviews = trip.reviews.order_by('-submitted_on')
+        score = 0
+        index = 0
         reviewed = False
+        for review in reviews:
+            score = score + review.rating
+            index += 1
+            if review.user == request.user:
+                reviewed = True
+        if score != 0:
+            score = score / index
         for review in reviews:
             if review.user == request.user:
                 reviewed = True
+
+        if trip.registered_users.filter(id=request.user.id).exists():
+            registered = True
 
         review_form = ReviewForm(data=request.POST)
         if (not reviewed):
@@ -81,10 +96,20 @@ class TripDetail(View):
                 review.trip = trip
                 review.user = request.user
                 review.save()
+                return HttpResponseRedirect(reverse('trip_detail', args=[slug]))
             else:
-                review_form = ReviewForm()
-
-        return HttpResponseRedirect(reverse('trip_detail', args=[slug]))
+                return render(
+                    request,
+                    'trip_detail.html',
+                    {
+                        'trip': trip,
+                        'reviews': reviews,
+                        'reviewed': reviewed,
+                        'score': score,
+                        'registered': registered,
+                        'review_form': review_form
+                    }
+                )
 
 
 class TripRegistration(View):
