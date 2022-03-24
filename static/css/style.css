@@ -41,6 +41,31 @@ body {
     background-color: rgba(238, 238, 238, 0.7);
 }
 
+.card-image {
+    min-height: 40%;
+    max-height: 40%;
+}
+
+.card-image img {
+    height: 100%;
+}
+
+.card-title {
+    font-size: 100%;
+}
+
+.card-subtitle {
+    font-size: 80%;
+}
+
+.card-date {
+    font-size: 90%;
+}
+
+.details-button {
+    bottom: 0;
+}
+
 .card-row {
     min-height: 50%;
 }
@@ -84,8 +109,6 @@ body {
 
 .active {
     border-bottom: 2px solid rgba(0, 0, 0, 0.5);
-    /* border-top: 2px solid rgba(0, 0, 0, 0.5); */
-    /* border-radius: 10px; */
 }
 
 .dash-menu {

@@ -13,17 +13,20 @@
         <div class="row my-2 my-md-4 mx-2 mx-md-5 gy-2 trip-cards content-bubble">
             {% for trip in trip_list %}
             <div class="card text-center col-sm-8 col-md-3 mx-auto p-1">
-                {% if "placeholder" in trip.image.url %}
-                <img src="https://circasd.com/wp-content/uploads/2021/07/Travel.jpeg" class="card-img-top" alt="...">
-                {% else %}
-                <img src=" {{ trip.image.url }}" class="card-img-top" alt="...">
-                {% endif %}
-                <div class="card-body">
-                    <h5 class="card-title">{{ trip.name }}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">{{ trip.destination }}</h6>
-                    <!-- <h6 class="card-text">{{ trip.description | safe }}</h6> -->
-                    <p>{{ trip.date_start }} - {{ trip.date_end }}</p>
-                    <a href="{% url 'trip_detail' trip.slug %}" class="btn btn-primary align-self-end">Details</a>
+                <div class="card-image">
+                    {% if "placeholder" in trip.image.url %}
+                    <img src="https://circasd.com/wp-content/uploads/2021/07/Travel.jpeg" class="card-img-top"
+                        alt="...">
+                    {% else %}
+                    <img src=" {{ trip.image.url }}" class="card-img-top" alt="...">
+                    {% endif %}
+                </div>
+                <div class="card-body m-md-0 p-md-1">
+                    <h5 class="card-title m-md-0">{{ trip.name }}</h5>
+                    <h6 class="card-subtitle mb-md-0 mb-lg-2 text-muted">{{ trip.destination }}</h6>
+                    <hr class="m-2 m-md-0 m-lg-4">
+                    <p class="mb-0 mb-md-5 card-date">{{ trip.date_start }} - {{ trip.date_end }}</p>
+                    <a href="{% url 'trip_detail' trip.slug %}" class="btn btn-primary position-absolute bottom-0 start-50 translate-middle-x my-2">Details</a>
                 </div>
             </div>
             {% endfor %}
