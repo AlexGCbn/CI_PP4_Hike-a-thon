@@ -63,8 +63,8 @@ class Review(models.Model):
 
 class Request(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_request')
-    destination = models.CharField(max_length=50)
-    description = models.TextField(max_length=200)
+    destination = models.CharField(max_length=50, validators=[validate_comment])
+    description = models.TextField(max_length=200, validators=[validate_comment])
     submitted_on = models.DateTimeField(auto_now_add=True)
     approved = models.BooleanField(default=False)
 
