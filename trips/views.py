@@ -170,7 +170,7 @@ class TripRequest(View):
         )
 
     def post(self, request, *args, **kwargs):
-        requests = Request.objects.filter(user=request.user)
+        requests = Request.objects.order_by('-submitted_on').filter(user=request.user)[:5]
 
         request_form = RequestForm(data=request.POST)
 
@@ -178,15 +178,16 @@ class TripRequest(View):
             trip_request = request_form.save(commit=False)
             trip_request.user = request.user
             trip_request.save()
-
-        return render(
-            request,
-            'request.html',
-            {
-                'requests': requests,
-                'request_form': RequestForm()
-            }
-        )
+            return HttpResponseRedirect(reverse('trip_request'))
+        else:
+            return render(
+                request,
+                'request.html',
+                {
+                    'requests': requests,
+                    'request_form': RequestForm()
+                }
+            )
 
 
 class EditReview(generic.UpdateView):

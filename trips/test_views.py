@@ -1,5 +1,5 @@
 from django.test import TestCase
-from .models import Trip, User, Review
+from .models import Trip, User, Review, Request
 from .forms import ReviewForm
 import datetime
 
@@ -62,15 +62,33 @@ class TestViews(TestCase):
         self.assertRedirects(response, f'/{trip.slug}/')
         new_review = Review.objects.all()
         self.assertEqual(len(new_review), 0)
-        
 
-    # def test_registered_trips(self):
+    def test_dashboard(self):
+        self.client.login(username='test_user', password='test_password')
+        response = self.client.get('/dashboard/')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'dashboard.html')
 
+    def test_trip_request_get(self):
+        self.client.login(username='test_user', password='test_password')
+        response = self.client.get('/dashboard/request/')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'request.html')
 
-    # def test_trip_request_get(self):
+    def test_trip_request_post(self):
+        self.client.login(username='test_user', password='test_password')
+        response = self.client.post('/dashboard/request/', {'destination': 'Africa', 'description': 'Test description'})
+        self.assertRedirects(response, '/dashboard/request/')
+        request = Request.objects.get(destination='Africa')
+        self.assertEqual(request.destination, 'Africa')
 
-
-    # def test_trip_request_post(self):
-
-
-    # def test_edit_review(self):
+    def test_edit_review(self):
+        user = self.client.login(username='test_user', password='test_password')
+        trip = Trip.objects.get(name='Test Trip')
+        trip.registered_users.add(user)
+        self.client.post(f'/{trip.slug}/', {'comment': 'This is a comment', 'rating': 3})
+        review = Review.objects.get(comment='This is a comment')
+        self.client.post(f'/edit/{review.id}', {'comment': 'This is a better comment', 'rating': 5})
+        review = Review.objects.get(comment='This is a better comment')
+        self.assertEqual(review.comment, 'This is a better comment')
+        self.assertEqual(review.rating, 5)
