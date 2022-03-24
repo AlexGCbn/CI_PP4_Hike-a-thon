@@ -1,8 +1,9 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404, reverse, get_list_or_404
+from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic, View
 from .models import Review, Trip, Request
 from .forms import ReviewForm, RequestForm
+import datetime
 
 
 class TripList(generic.ListView):
@@ -10,7 +11,7 @@ class TripList(generic.ListView):
     Main trips view
     """
     model = Trip
-    queryset = Trip.objects.order_by('date_start')
+    queryset = Trip.objects.order_by('date_start').filter(date_start__gt=datetime.date.today())
     template_name = 'index.html'
     paginate_by = 3
 
@@ -20,7 +21,7 @@ class PastTrips(generic.ListView):
     Past trips view
     """
     model = Trip
-    queryset = Trip.objects.order_by('date_start')
+    queryset = Trip.objects.order_by('date_start').filter(date_start__lte=datetime.date.today())
     template_name = 'past_trips.html'
     paginate_by = 3
 
@@ -149,8 +150,6 @@ class TripRequest(View):
         request_form = RequestForm(data=request.POST)
 
         if request_form.is_valid():
-            # destination = request_form.cleaned_data['destination']
-            # if not Request.objects.filter(destination=destination).exists():
             trip_request = request_form.save(commit=False)
             trip_request.user = request.user
             trip_request.save()

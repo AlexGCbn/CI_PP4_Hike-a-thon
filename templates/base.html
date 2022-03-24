@@ -42,7 +42,7 @@
                         </li>
                         {% if user.is_authenticated %}
                         <li class="nav-item">
-                            <a class="nav-link {% if url_name == 'user_dashboard' %}active{% endif %}"
+                            <a class="nav-link {% if url_name == 'user_dashboard' or url_name == 'trip_request' %}active{% endif %}"
                                 href="{% url 'user_dashboard' %}">Dashboard</a>
                         </li>
                         <li class="nav-item">
@@ -51,12 +51,12 @@
                         </li>
                         {% else %}
                         <li class="nav-item">
-                            <a class="nav-link {% if url_name == 'account_login' %}active{% endif %}"
-                                href="{% url 'account_login' %}">Login</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link {% if url_name == 'account_signup' %}active{% endif %}"
                                 href="{% url 'account_signup' %}">Register</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if url_name == 'account_login' %}active{% endif %}"
+                                href="{% url 'account_login' %}">Login</a>
                         </li>
                         {% endif %}
                         {% endwith %}
@@ -67,6 +67,11 @@
     </nav>
 
     <main class="flex-shrink-0">
+        {% if user.is_authenticated %}
+        <div class="row text-end me-4 mt-0">
+            <p>Signed in as <strong>{{ user.username }}</strong></p>
+        </div>
+        {% endif %}
         <!-- Content block to render templates -->
         {% block content %}
 
