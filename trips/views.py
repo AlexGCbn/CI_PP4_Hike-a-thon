@@ -3,7 +3,6 @@ from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic, View
 from .models import Review, Trip, Request
 from .forms import ReviewForm, RequestForm
-from django import forms
 import datetime
 
 
