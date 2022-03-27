@@ -6,6 +6,11 @@ import datetime
 class TestViews(TestCase):
 
     def setUp(self):
+        """
+        setUp function
+        Creates a trip object
+        Creates a user object
+        """
         test_trip = Trip.objects.create(
             name='Test Trip',
             slug='test_trip',
@@ -26,22 +31,34 @@ class TestViews(TestCase):
         )
 
     def test_get_trip_list(self):
+        """
+        Test trip list GET
+        """
         response = self.client.get('/')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'index.html')
 
     def test_get_past_trips_list(self):
+        """
+        Test past trips GET
+        """
         response = self.client.get('/past_trips/')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'past_trips.html')
 
     def test_get_trip_detail(self):
+        """
+        Test trip detail GET
+        """
         trip = Trip.objects.get(name='Test Trip')
         response = self.client.get(f'/{trip.slug}/')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'trip_detail.html')
 
     def test_post_trip_review(self):
+        """
+        Test trip review POST
+        """
         user = self.client.login(
             username='test_user', password='test_password'
         )
@@ -53,6 +70,10 @@ class TestViews(TestCase):
         self.assertRedirects(response, f'/{trip.slug}/')
 
     def test_post_trip_review_bad(self):
+        """
+        Test trip review bad POST
+        For invalid form data
+        """
         self.client.login(username='test_user', password='test_password')
         user = User.objects.get(username='test_user')
         trip = Trip.objects.get(name='Test Trip')
@@ -69,6 +90,9 @@ class TestViews(TestCase):
         self.assertEqual(response.context['score'], 5)
 
     def test_trip_registration(self):
+        """
+        Test user trip registration
+        """
         self.client.login(
             username='test_user', password='test_password'
         )
@@ -80,6 +104,9 @@ class TestViews(TestCase):
         self.assertQuerysetEqual(registered_users, [])
 
     def test_delete_review(self):
+        """
+        Test user review delete
+        """
         user = self.client.login(
             username='test_user', password='test_password'
         )
@@ -96,18 +123,27 @@ class TestViews(TestCase):
         self.assertEqual(len(new_review), 0)
 
     def test_dashboard(self):
+        """
+        Test user dashboard access
+        """
         self.client.login(username='test_user', password='test_password')
         response = self.client.get('/dashboard/')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'dashboard.html')
 
     def test_trip_request_get(self):
+        """
+        Test user past trip requests GET
+        """
         self.client.login(username='test_user', password='test_password')
         response = self.client.get('/dashboard/request/')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'request.html')
 
     def test_trip_request_post(self):
+        """
+        Test user trip request POST
+        """
         self.client.login(username='test_user', password='test_password')
         response = self.client.post(
             '/dashboard/request/',
@@ -118,6 +154,10 @@ class TestViews(TestCase):
         self.assertEqual(request.destination, 'Africa')
 
     def test_trip_request_bad(self):
+        """
+        Test user bad trip request POST
+        Provides invalid form data
+        """
         self.client.login(username='test_user', password='test_password')
         response = self.client.post(
             '/dashboard/request/', {'destination': '', 'description': ''}
@@ -126,6 +166,9 @@ class TestViews(TestCase):
         self.assertTemplateUsed(response, 'request.html')
 
     def test_edit_review(self):
+        """
+        Test user review edit
+        """
         user = self.client.login(
             username='test_user', password='test_password'
         )

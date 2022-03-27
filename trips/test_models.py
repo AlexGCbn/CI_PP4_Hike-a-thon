@@ -6,6 +6,11 @@ import datetime
 class TestModels(TestCase):
 
     def setUp(self):
+        """
+        setUp function
+        Creates a trip object
+        Creates a user object
+        """
         test_trip = Trip.objects.create(
             name='Test Trip',
             slug='test_trip',
@@ -22,11 +27,17 @@ class TestModels(TestCase):
         )
 
     def test_trip_defaults(self):
+        """
+        Test Trip default values
+        """
         trip = Trip.objects.get(name='Test Trip')
         # Unable to test default image
         self.assertEqual(trip.price, 0)
 
     def test_review_default(self):
+        """
+        Test Review default values
+        """
         self.client.login(
             username='test_user', password='test_password'
         )
@@ -39,12 +50,18 @@ class TestModels(TestCase):
         self.assertEqual(review.rating, 3)
 
     def test_trip_str(self):
+        """
+        Test Trip __str__ function
+        """
         trip = Trip.objects.get(name='Test Trip')
         self.assertEqual(
             trip.__str__(), 'Test trip at Test destination'
         )
 
     def test_trip_is_completed(self):
+        """
+        Test Trip is_completed function
+        """
         tomorrow_trip = Trip.objects.create(
             name='Test tomorrow Trip',
             slug='test_tomorrow_trip',
@@ -56,6 +73,9 @@ class TestModels(TestCase):
         self.assertEqual(tomorrow_trip.is_completed(), False)
 
     def test_review_str(self):
+        """
+        Test Review __str__ function
+        """
         self.client.login(
             username='test_user', password='test_password'
         )
@@ -72,6 +92,9 @@ class TestModels(TestCase):
         )
 
     def test_Request_str(self):
+        """
+        Test Request __str__ function
+        """
         self.client.login(
             username='test_user', password='test_password'
         )

@@ -5,6 +5,9 @@ from .forms import ReviewForm, RequestForm
 class TestReviewForm(TestCase):
 
     def test_comment_is_required(self):
+        """
+        Test if comment is required for Review form
+        """
         form = ReviewForm({'comment': ''})
         self.assertFalse(form.is_valid())
         self.assertIn('comment', form.errors.keys())
@@ -13,6 +16,9 @@ class TestReviewForm(TestCase):
         )
 
     def test_comment_validation(self):
+        """
+        Test comment validation in Review form
+        """
         form = ReviewForm({'comment': 'Hi'})
         self.assertFalse(form.is_valid())
         self.assertIn('comment', form.errors.keys())
@@ -22,6 +28,9 @@ class TestReviewForm(TestCase):
         )
 
     def test_rating_is_required(self):
+        """
+        Test if rating is required for Review form
+        """
         form = ReviewForm(
             {'comment': 'This is a comment', 'rating': ''}
         )
@@ -33,6 +42,9 @@ class TestReviewForm(TestCase):
             )
 
     def test_fields_are_explicit(self):
+        """
+        Test if Review form has explicit fields
+        """
         form = ReviewForm()
         self.assertEqual(
             form.Meta.fields, ('comment', 'rating')
@@ -42,6 +54,9 @@ class TestReviewForm(TestCase):
 class TestRequestForm(TestCase):
 
     def test_destination_is_required(self):
+        """
+        Test if destination is required for Request form
+        """
         form = RequestForm({'destination': ''})
         self.assertFalse(form.is_valid())
         self.assertIn('destination', form.errors.keys())
@@ -50,6 +65,9 @@ class TestRequestForm(TestCase):
         )
 
     def test_destination_validation(self):
+        """
+        Test destination validation for Request form
+        """
         form = RequestForm({'destination': 'Hi'})
         self.assertFalse(form.is_valid())
         self.assertIn('destination', form.errors.keys())
@@ -59,6 +77,9 @@ class TestRequestForm(TestCase):
         )
 
     def test_description_is_required(self):
+        """
+        Test if description is required for Request form
+        """
         form = RequestForm(
             {'destination': 'This is a destination', 'description': ''}
         )
@@ -69,6 +90,9 @@ class TestRequestForm(TestCase):
         )
 
     def test_description_validation(self):
+        """
+        Test description validation for Request form
+        """
         form = RequestForm(
             {'destination': 'This is a destination', 'description': 'Hi'}
         )
@@ -80,5 +104,8 @@ class TestRequestForm(TestCase):
         )
 
     def test_fields_are_explicit(self):
+        """
+        Test if Request form has explicit fields
+        """
         form = RequestForm()
         self.assertEqual(form.Meta.fields, ('destination', 'description'))
