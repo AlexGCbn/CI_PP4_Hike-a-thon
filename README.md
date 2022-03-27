@@ -11,8 +11,47 @@ Hike-a-thon is a hiking trips website, which permits users to register for trips
 
 ** View the live website [here](https://hike-a-thon.herokuapp.com/)**
 <br><br>
-![Website ]
+** Website image **
 
+- [Project Overview](#project-overview)
+- [UX](#ux)
+    * [Strategy](#strategy)
+        + [Primary Goal](#primary-goal)
+    * [Structure](#structure)
+        + [Website pages](#website-pages)
+        + [Code Structure](#code-structure)
+        + [Database](#database)
+            - [Database diagram](#database-diagram)
+            - [Models](#models)
+    * [Scope](#scope)
+        + [User Stories]
+    * [Design](#design)
+        + [Wireframes](#wireframes)
+        + [Colours](#colours)
+        + [Fonts](#fonts)
+- [Features](#features)
+    * [Feature 1 - Navigation Bar and Homepage](#feature-1)
+    * [Feature 2 - Welcome text](#feature-2)
+    * [Feature 3 - Upcoming Trips](#feature-3)
+    * [Feature 4 - Footer](#feature-4)
+    * [Feature 5 - Trip Details](#feature-5)
+    * [Feature 6 - Trip Registration](#feature-6)
+    * [Feature 7 - Past Trips](#feature-7)
+    * [Feature 8 - Trip Review](#feature-8)
+    * [Feature 9 - Delete Review](#feature-9)
+    * [Feature 10 - Edit Review](#feature-10)
+    * [Feature 11 - Register](#feature-11)
+    * [Feature 12 - Login](#feature-12)
+    * [Feature 13 - Logout](#feature-13)
+    * [Feature 14 - Admin page](#feature-14)
+- [Technologies Used](#technologies-used)
+    * [Languages](#languages)
+    * [Libraries and other resources](#libraries-and-other-resources)
+- [Testing](#testing)
+- [Deployment](#deployment)
+  * [Local Deployment](#local-deployment)
+  * [Heroku and Postgres Database](#heroku-and-postgres-database)
+- [Credits](#credits)
 
 User stories:  
   
