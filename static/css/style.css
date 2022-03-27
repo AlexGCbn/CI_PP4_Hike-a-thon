@@ -24,7 +24,6 @@ body {
 }
 
 .welcome-text {
-    background-image: url(../images/hero-image.jpg);
     background-position: center;
     background-size: cover;
     border-radius: 15px;
