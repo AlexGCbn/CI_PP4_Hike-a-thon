@@ -37,6 +37,10 @@
                                 href="{% url 'home' %}">Home</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link {% if url_name == 'about' %}active{% endif %}" aria-current="page"
+                                href="{% url 'about' %}">About</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link {% if url_name == 'past_trips' %}active{% endif %}" aria-current="page"
                                 href="{% url 'past_trips' %}">Past trips</a>
                         </li>

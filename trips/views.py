@@ -231,3 +231,10 @@ class EditReview(generic.UpdateView):
 
         slug = self.object.trip.slug
         return reverse('trip_detail', args=[slug])
+
+
+class AboutView(generic.TemplateView):
+    """
+    Renders about page
+    """
+    template_name = 'about.html'

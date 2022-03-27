@@ -7,6 +7,9 @@ urlpatterns = [
         '', views.TripList.as_view(), name='home'
     ),  # Home URL
     path(
+        'about/', views.AboutView.as_view(), name='about'
+    ),  # About URL
+    path(
         'dashboard/', login_required(
             views.TripsRegistered.as_view()
         ), name='user_dashboard'
