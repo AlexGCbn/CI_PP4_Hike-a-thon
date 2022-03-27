@@ -21,8 +21,14 @@ class Trip(models.Model):
     name = models.CharField(max_length=500, unique=True)
     slug = models.SlugField(max_length=500, unique=True)
     destination = models.CharField(max_length=200)
-    date_start = models.DateField(auto_now=False)
-    date_end = models.DateField(auto_now=False)
+    date_start = models.DateField(
+        auto_now=False,
+        blank=False
+    )
+    date_end = models.DateField(
+        auto_now=False,
+        blank=False
+    )
     description = models.TextField()
     image = CloudinaryField('image', default='placeholder')
     price = models.IntegerField(default=0)
