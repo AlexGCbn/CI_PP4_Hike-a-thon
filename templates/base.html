@@ -67,6 +67,7 @@
     </nav>
 
     <main class="flex-shrink-0">
+        <!-- Show whether user is authenticated -->
         {% if user.is_authenticated %}
         <div class="row text-end me-4 mt-0">
             <p>Signed in as <strong>{{ user.username }}</strong></p>
@@ -78,6 +79,7 @@
         {% endblock content %}
     </main>
 
+    <!-- Page footer -->
     <footer class="footer mt-auto py-3">
         <div class="container">
             <div class="row">
@@ -90,7 +92,8 @@
                 </div>
                 <div class="col text-end">
                     <p class="footer-text">Visit our social pages:</p>
-                    <p class="footer-text"><a href="https://www.facebook.com/" target="_blank">Facebook</a> | <a href="https://www.instagram.com/" target="_blank">Instagram</a></p>
+                    <p class="footer-text"><a href="https://www.facebook.com/" target="_blank">Facebook</a> | <a
+                            href="https://www.instagram.com/" target="_blank">Instagram</a></p>
                 </div>
             </div>
         </div>

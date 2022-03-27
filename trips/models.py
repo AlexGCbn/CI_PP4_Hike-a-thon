@@ -36,10 +36,16 @@ class Trip(models.Model):
     def __str__(self) -> str:
         return f'{self.name.capitalize()} at {self.destination.capitalize()}'
 
-    def registered_users_count(self):
+    def registered_users_count(self) -> int:
+        """
+        Returns count of registered users
+        """
         return self.registered_users.count()
 
-    def is_completed(self):
+    def is_completed(self) -> bool:
+        """
+        Returns boolean value if trip is completed
+        """
         if self.date_start <= datetime.date.today():
             return True
         else:
