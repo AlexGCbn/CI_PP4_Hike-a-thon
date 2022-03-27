@@ -90,10 +90,32 @@ Page            |Description
 Home     |The homepage consists of a welcome message and a list of upcoming trips
 Trip Detail     |Each trip detail provides the details of the specific trip, with options for users
 Past trips     |Provides a list of all past trips
-               
+Past trip details     |Each past trip detail provides the details of the specific trip, with options for users      
+About     |Provides information about page and contact details
+Register     |Users can sign up for an account
+Login     |Users can sign in with their accounts
+Logout     |Users can sign out of their accounts
+Dashboard     |Users see their past trips
+Request     |Users can make a trip request
 
+### Code Structure
+- The project contains one app.
+- The project's app is the "trips" app, which handles all the trips data.
+- The project is accompanied by:
+    * templates
+    * README (This file)
+    * TESTING (Documentation about testing)
+    * Procfile (To run the deployed application)
+    * Requirements.txt (Contains all necesary libraries required)
+- The project was built with the help of the Django Blog app.
 
+### Database
+- The project uses a relational database (PostgreSQL)
+- Data is handled by the application with Django
 
+#### Database diagram
+The database diagram can be seen below:
+![Database diagram image](/static/docs/database_diagram.png)
 
 
 
