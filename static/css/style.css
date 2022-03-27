@@ -6,10 +6,6 @@ body {
     font-family: 'Nunito', sans-serif;
 }
 
-/* main > .container-fluid {
-    padding-top: 60px;
-} */
-
 .navbar {
     background-color: rgb(111, 178, 210);
     border-bottom: 1px solid rgba(238, 238, 238, 0.5);

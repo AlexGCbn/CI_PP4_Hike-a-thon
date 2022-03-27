@@ -104,7 +104,8 @@ WSGI_APPLICATION = 'hike_a_thon.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 
-# Credits: https://stackoverflow.com/questions/47466185/got-an-error-creating-the-test-database-django-unittest
+# Credits:
+# https://stackoverflow.com/questions/47466185/got-an-error-creating-the-test-database-django-unittest
 if 'test' in sys.argv or 'test_coverage' in sys.argv:
     DATABASES = {
         'default': {
