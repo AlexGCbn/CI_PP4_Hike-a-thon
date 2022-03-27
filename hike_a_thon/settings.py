@@ -31,7 +31,10 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['hike-a-thon.herokuapp.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = [
+    'hike-a-thon.herokuapp.com',
+    'localhost',
+    '127.0.0.1']
 
 
 # Application definition
@@ -102,7 +105,7 @@ WSGI_APPLICATION = 'hike_a_thon.wsgi.application'
 
 
 # Credits: https://stackoverflow.com/questions/47466185/got-an-error-creating-the-test-database-django-unittest
-if 'test' in sys.argv or 'test_coverage' in sys.argv: 
+if 'test' in sys.argv or 'test_coverage' in sys.argv:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -113,13 +116,6 @@ else:
     DATABASES = {
         'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
     }
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
 
 
 # Password validation

@@ -12,7 +12,9 @@ class TripList(generic.ListView):
     Main trips view
     """
     model = Trip
-    queryset = Trip.objects.order_by('date_start').filter(date_start__gt=datetime.date.today())
+    queryset = Trip.objects.order_by('date_start').filter(
+        date_start__gt=datetime.date.today()
+    )
     template_name = 'index.html'
     paginate_by = 3
 
@@ -22,17 +24,22 @@ class PastTrips(generic.ListView):
     Past trips view
     """
     model = Trip
-    queryset = Trip.objects.order_by('date_start').filter(date_start__lte=datetime.date.today())
+    queryset = Trip.objects.order_by('date_start').filter(
+        date_start__lte=datetime.date.today()
+    )
     template_name = 'past_trips.html'
     paginate_by = 3
 
 
 class TripDetail(View):
     """
-    Trip detail view, to render each trip
+    Trip detail view, to render the trip on its own
     """
-
     def get(self, request, slug, *args, **kwargs):
+        """
+        GET request for TripDetail
+        Returns the render of the trip detail
+        """
         queryset = Trip.objects
         trip = get_object_or_404(queryset, slug=slug)
         reviews = trip.reviews.order_by('-submitted_on')
@@ -67,6 +74,11 @@ class TripDetail(View):
         )
 
     def post(self, request, slug, *args, **kwargs):
+        """
+        POST request for TripDetail, to post reviews
+        If review form is valid, makes POST and redirects
+        If not, renders the TripDetail, as GET
+        """
         queryset = Trip.objects
         trip = get_object_or_404(queryset, slug=slug)
         reviews = trip.reviews.order_by('-submitted_on')
@@ -91,7 +103,9 @@ class TripDetail(View):
                 review.trip = trip
                 review.user = request.user
                 review.save()
-                return HttpResponseRedirect(reverse('trip_detail', args=[slug]))
+                return HttpResponseRedirect(
+                    reverse('trip_detail', args=[slug])
+                )
             else:
                 return render(
                     request,
@@ -108,7 +122,9 @@ class TripDetail(View):
 
 
 class TripRegistration(View):
-
+    """
+    Trip Registration view, to POST user registration to trip
+    """
     def post(self, request, slug, *args, **kwargs):
         trip = get_object_or_404(Trip, slug=slug)
         if trip.registered_users.filter(id=request.user.id).exists():
@@ -120,7 +136,9 @@ class TripRegistration(View):
 
 
 class DeleteReview(View):
-
+    """
+    Delete Review POST view, to delete user review
+    """
     def post(self, request, slug, *args, **kwargs):
         trip = get_object_or_404(Trip, slug=slug)
         review = trip.reviews.filter(user=request.user)
@@ -133,9 +151,10 @@ class TripsRegistered(generic.TemplateView):
     """
     List view to show all user registered trips
     """
-
     def get(self, request, *args, **kwargs):
-        trips = Trip.objects.order_by('-date_start').filter(registered_users=request.user)
+        trips = Trip.objects.order_by('-date_start').filter(
+            registered_users=request.user
+        )
 
         return render(
             request,
@@ -149,11 +168,16 @@ class TripsRegistered(generic.TemplateView):
 class TripRequest(View):
     """
     Display form for user to make a trip request
-    Also GET user's requests
     """
 
     def get(self, request, *args, **kwargs):
-        requests = Request.objects.order_by('-submitted_on').filter(user=request.user)[:5]
+        """
+        GET request, to get user's past trip requests
+        Gets only 5 results
+        """
+        requests = Request.objects.order_by('-submitted_on').filter(
+            user=request.user
+        )[:5]
 
         return render(
             request,
@@ -165,7 +189,14 @@ class TripRequest(View):
         )
 
     def post(self, request, *args, **kwargs):
-        requests = Request.objects.order_by('-submitted_on').filter(user=request.user)[:5]
+        """
+        POST request, to send user's trip request
+        If form is valid, it makes the POST
+        If not, it renders the page again
+        """
+        requests = Request.objects.order_by('-submitted_on').filter(
+            user=request.user
+        )[:5]
 
         request_form = RequestForm(data=request.POST)
 
@@ -189,7 +220,6 @@ class EditReview(generic.UpdateView):
     """
     Allows user to edit their review
     """
-
     model = Review
     fields = ['comment', 'rating']
     template_name = 'edit_review_form.html'

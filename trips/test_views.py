@@ -11,7 +11,7 @@ class TestViews(TestCase):
             slug='test_trip',
             destination='Test Destination',
             date_start=datetime.date.today(),
-            date_end=datetime.date.today(), 
+            date_end=datetime.date.today(),
             description='Test description',
             image='default',
             price='50'
@@ -19,7 +19,11 @@ class TestViews(TestCase):
 
         test_trip.registered_users.set([])
 
-        User.objects.create_user(username='test_user', email='test_email@email.com', password='test_password')
+        User.objects.create_user(
+            username='test_user',
+            email='test_email@email.com',
+            password='test_password'
+        )
 
     def test_get_trip_list(self):
         response = self.client.get('/')
@@ -38,10 +42,14 @@ class TestViews(TestCase):
         self.assertTemplateUsed(response, 'trip_detail.html')
 
     def test_post_trip_review(self):
-        user = self.client.login(username='test_user', password='test_password')
+        user = self.client.login(
+            username='test_user', password='test_password'
+        )
         trip = Trip.objects.get(name='Test Trip')
         trip.registered_users.add(user)
-        response = self.client.post(f'/{trip.slug}/', {'comment': 'This is a comment', 'rating': 3})
+        response = self.client.post(
+            f'/{trip.slug}/', {'comment': 'This is a comment', 'rating': 3}
+        )
         self.assertRedirects(response, f'/{trip.slug}/')
 
     def test_post_trip_review_bad(self):
@@ -49,15 +57,21 @@ class TestViews(TestCase):
         user = User.objects.get(username='test_user')
         trip = Trip.objects.get(name='Test Trip')
         trip.registered_users.add(user)
-        Review.objects.create(trip=trip, user=user, comment="Testing score", rating=5)
-        response = self.client.post(f'/{trip.slug}/', {'comment': 'Test', 'rating': 3})
+        Review.objects.create(
+            trip=trip, user=user, comment="Testing score", rating=5
+        )
+        response = self.client.post(
+            f'/{trip.slug}/', {'comment': 'Test', 'rating': 3}
+        )
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'trip_detail.html')
         self.assertEqual(response.context['reviewed'], False)
         self.assertEqual(response.context['score'], 5)
 
     def test_trip_registration(self):
-        self.client.login(username='test_user', password='test_password')
+        self.client.login(
+            username='test_user', password='test_password'
+        )
         trip = Trip.objects.get(name='Test Trip')
         response = self.client.post(f'/register/{trip.slug}')
         self.assertRedirects(response, f'/{trip.slug}/')
@@ -66,10 +80,14 @@ class TestViews(TestCase):
         self.assertQuerysetEqual(registered_users, [])
 
     def test_delete_review(self):
-        user = self.client.login(username='test_user', password='test_password')
+        user = self.client.login(
+            username='test_user', password='test_password'
+        )
         trip = Trip.objects.get(name='Test Trip')
         trip.registered_users.add(user)
-        self.client.post(f'/{trip.slug}/', {'comment': 'This is a comment', 'rating': 3})
+        self.client.post(
+            f'/{trip.slug}/', {'comment': 'This is a comment', 'rating': 3}
+        )
         review = Review.objects.get(comment='This is a comment')
         self.assertEqual(review.comment, 'This is a comment')
         response = self.client.post(f'/delete_review/{trip.slug}')
@@ -91,25 +109,36 @@ class TestViews(TestCase):
 
     def test_trip_request_post(self):
         self.client.login(username='test_user', password='test_password')
-        response = self.client.post('/dashboard/request/', {'destination': 'Africa', 'description': 'Test description'})
+        response = self.client.post(
+            '/dashboard/request/',
+            {'destination': 'Africa', 'description': 'Test description'}
+        )
         self.assertRedirects(response, '/dashboard/request/')
         request = Request.objects.get(destination='Africa')
         self.assertEqual(request.destination, 'Africa')
 
     def test_trip_request_bad(self):
         self.client.login(username='test_user', password='test_password')
-        response = self.client.post('/dashboard/request/', {'destination': '', 'description': ''})
+        response = self.client.post(
+            '/dashboard/request/', {'destination': '', 'description': ''}
+        )
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'request.html')
 
-
     def test_edit_review(self):
-        user = self.client.login(username='test_user', password='test_password')
+        user = self.client.login(
+            username='test_user', password='test_password'
+        )
         trip = Trip.objects.get(name='Test Trip')
         trip.registered_users.add(user)
-        self.client.post(f'/{trip.slug}/', {'comment': 'This is a comment', 'rating': 3})
+        self.client.post(
+            f'/{trip.slug}/', {'comment': 'This is a comment', 'rating': 3}
+        )
         review = Review.objects.get(comment='This is a comment')
-        self.client.post(f'/edit/{review.id}', {'comment': 'This is a better comment', 'rating': 5})
+        self.client.post(
+            f'/edit/{review.id}',
+            {'comment': 'This is a better comment', 'rating': 5}
+        )
         review = Review.objects.get(comment='This is a better comment')
         self.assertEqual(review.comment, 'This is a better comment')
         self.assertEqual(review.rating, 5)
