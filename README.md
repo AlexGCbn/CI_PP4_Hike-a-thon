@@ -24,7 +24,7 @@ Hike-a-thon is a hiking trips website, which permits users to register for trips
             - [Database diagram](#database-diagram)
             - [Models](#models)
     * [Scope](#scope)
-        + [User Stories]
+        + [User Stories](#user-stories)
     * [Design](#design)
         + [Wireframes](#wireframes)
         + [Colours](#colours)
@@ -114,48 +114,110 @@ Request     |Users can make a trip request
 - Data is handled by the application with Django
 
 #### Database diagram
-The database diagram can be seen below:
+The database diagram can be seen below:<br>
 ![Database diagram image](/static/docs/database_diagram.png)
 
+#### Models
+##### User
+- The User model contains information about each user that registers
+- It is part of the Django allauth library
+- The following fields are used for this project: username, email, password
 
+##### Trip
+- The Trip model is the main model
+- Only Admins can create Trip objects, but all users can interact with them
+- The model contains the following fields: name, slug, destination, date_start, date_end, description, image, price, registered_users
+- Has functions to count the registered users and show if the trip is completed
+- Has a ManyToMany relationship, where all registered users are stored
+
+##### Review
+- Used by users to review Trip objects, thus has a ForeignKey relationship with both Trip and User
+- Contains the following fields: trip, user, comment, rating, submitted_on
+- Has function to return the rating as a list, so the app can count it
+
+##### Request
+- Used by users to request trips, thus has a ForeignKey relationship with User
+- Contains the following fields: user, destination, description, submitted_on, approved
+- Admins have the function to approve the request
+
+## Scope
+The User Stories are described below
+### User Stories
+First time visitor:
+- As a *first time visitor* I can *see a landing page* so that *I get information about the website's purpose*
+- As a *first time visitor* I can *sign up* so that *I have an account for the website*
+- As a *first time visitor* I can *find an about page* so that *I can get information about the owner*
+- As a *first time visitor* I can *find the navigation bar* so that *I can navigate the page*
+- As a *first time visitor* I can *get to my dashboard* so that *I see my account details*
+- As a *first time visitor* I can *find the trips section* so that *I see upcoming and completed trips*
+
+Recurring visitor:
+- As a *recurring visitor* I can *sign in* so that *I get access to my account*
+- As a *recurring visitor* I can *find the trip sign up* so that *I can sign up for an upcoming trip*
+- As a *recurring visitor* I can *view all my trips* so that *I have a full history of them*
+- As a *recurring visitor* I can *comment on trips I have been to* so that *I can rate them and provide information*
+- As a *recurring visitor* I can *complete a request form* so that *I can request a trip idea*
+- As a *recurring visitor* I can *find contact information* so that *I can contact the owner*
+
+Admin/Owner:
+- As an *admin/owner* I can *add a trip* so that *I can post new trips*
+- As an *admin/owner* I can *view trip requests* so that *I can get ideas about future trips*
+- As an *admin/owner* I can *view trip requests* so that *I can get ideas about future trips*
+- As an *admin/owner* I can *view a list of attendees* so that *I know who is joining each trip*
+
+## Design
+### Wireframes
+
+** Wireframes ** 
+
+### Colours
+The colour palette was taken from [Color Hunt](https://colorhunt.co/palette/6fb2d285c88aebd671eeeeee)<br>
+![Colour palette used](/static/docs/colours.png)
+
+### Fonts
+The fonts used are from the Google Fonts library, and are the following:
+Josephin for the logo
+Nunito for the website's text
 
 User stories:  
   
 First time visitor:
 As a *first time visitor* I can *see a landing page* so that *I get information about the website's purpose*
-- Navigate to home page
+- Navigate to home page<br>
 As a *first time visitor* I can *sign up* so that *I have an account for the website*
-- Press "Register" > Complete form correctly > Press Sign Up
+- Press "Register" > Complete form correctly > Press Sign Up<br>
 As a *first time visitor* I can *find an about page* so that *I can get information about the owner*
-- Navigate to "About" page
+- Navigate to "About" page<br>
 As a *first time visitor* I can *find the navigation bar* so that *I can navigate the page*
-- Navigate to any page and look to top
+- Navigate to any page and look to top<br>
 As a *first time visitor* I can *get to my dashboard* so that *I see my account details*
-- Sign in > Navigate to "Dashboard"
+- Sign in > Navigate to "Dashboard"<br>
 As a *first time visitor* I can *find the trips section* so that *I see upcoming and completed trips*
-- Navigate to home page for trips > Navigate to "Past Trips" for completed trips.
+- Navigate to home page for trips > Navigate to "Past Trips" for completed trips.<br>
 
 Recurring visitor:
 As a *recurring visitor* I can *sign in* so that *I get access to my account*
-- Press "Login" > Complete form > Press "Sign in"
+- Press "Login" > Complete form > Press "Sign in"<br>
 As a *recurring visitor* I can *find the trip sign up* so that *I can sign up for an upcoming trip*
-- Press "Details" on wanted trip > Press "Register"
+- Press "Details" on wanted trip > Press "Register"<br>
 As a *recurring visitor* I can *view all my trips* so that *I have a full history of them*
-- Sign in > Press "Dashboard" > See trips
+- Sign in > Press "Dashboard" > See trips<br>
 As a *recurring visitor* I can *comment on trips I have been to* so that *I can rate them and provide information*
-- Sign in > Find completed trip that user was registered to > Complete review form > Press submit
+- Sign in > Find completed trip that user was registered to > Complete review form > Press submit<br>
 As a *recurring visitor* I can *complete a request form* so that *I can request a trip idea*
-- Sign in > Press "Dashboard" > Press "Request trip"
+- Sign in > Press "Dashboard" > Press "Request trip"<br>
 As a *recurring visitor* I can *find contact information* so that *I can contact the owner*
-- Navigate to "About" page > See contact information
+- Navigate to "About" page > See contact information<br>
 
 Admin/Owner:
 As an *admin/owner* I can *add a trip* so that *I can post new trips*
-- On Admin panel > Navigate to Trips > Press "Add Trip" > Complete form
+- On Admin panel > Navigate to Trips > Press "Add Trip" > Complete form<br>
 As an *admin/owner* I can *view trip requests* so that *I can get ideas about future trips*
-- On Admin panel > Navigate to Requests > View Requests (approve if needed)
+- On Admin panel > Navigate to Requests > View Requests (approve if needed)<br>
+As an *admin/owner* I can *view trip requests* so that *I can get ideas about future trips*
+- On Admin panel > Navigate to Requests > Tick request > Choose "Approve request" from options<br>
 As an *admin/owner* I can *view a list of attendees* so that *I know who is joining each trip*
-- On Admin panel > Navigate to Trips > Choose trip > Look at "Chosen registered users"
+- On Admin panel > Navigate to Trips > Choose trip > Look at "Chosen registered users"<br>
 
 ### Colour palette:
 https://colorhunt.co/palette/6fb2d285c88aebd671eeeeee
