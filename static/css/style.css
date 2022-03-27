@@ -99,6 +99,12 @@ body {
     color: rgb(255, 217, 0);
 }
 
+.contact-social {
+    text-decoration: none;
+    color: inherit;
+    font-weight: 600;
+}
+
 /* Reusable styling classes */
 
 .content-bubble {
