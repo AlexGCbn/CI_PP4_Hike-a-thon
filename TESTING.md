@@ -404,3 +404,51 @@
 ![Lighthouse request page validation](/static/docs/lighthouse/request.png)
 
 </details>
+
+## Python
+- For Python validation I used [PEP8 Online](http://pep8online.com/)
+- I tested only files that I made changes to, not files that Django creates on its own and there was no input from me
+- All files pass with no errors, except of settings.py
+- For settings.py, the only errors are about length for code that should not be changed
+
+<details><summary>Screenshots</summary>
+
+#### admin.py
+![PEP8 admin.py validation](/static/docs/pep8/admin.png)
+
+#### apps.py
+![PEP8 apps.py validation](/static/docs/pep8/apps.png)
+
+#### forms.py
+![PEP8 form.py validation](/static/docs/pep8/forms.png)
+
+#### models.py
+![PEP8 models.py validation](/static/docs/pep8/models.png)
+
+#### settings.py
+- Errors are from code that Django creates and I did not modify, so nothing will break
+- Last error is about cloudinary url, which is large in its own
+![PEP8 settings.py validation](/static/docs/pep8/settings.png)
+
+#### test_forms.py
+![PEP8 test_forms.py validation](/static/docs/pep8/test_forms.png)
+
+#### test_models.py
+![PEP8 test_models.py validation](/static/docs/pep8/test_models.png)
+
+#### test_views.py
+![PEP8 test_views.py validation](/static/docs/pep8/test_views.png)
+
+#### trips.py
+![PEP8 trips.py validation](/static/docs/pep8/trips.png)
+
+#### urls.py (trips)
+![PEP8 urls.py for trips validation](/static/docs/pep8/urls_app.png)
+
+#### urls.py (hike-a-thon)
+![PEP8 urls.py for project validation](/static/docs/pep8/urls_project.png)
+
+#### validators.py
+![PEP8 validators.py validation](/static/docs/pep8/validators.png)
+
+</details>
