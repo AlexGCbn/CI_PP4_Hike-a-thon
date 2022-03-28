@@ -168,7 +168,10 @@ Admin/Owner:
 ## Design
 ### Wireframes
 
-** Wireframes ** 
+![Home wireframes](/static/docs/wireframes/home.png)
+![Trip details wireframes](/static/docs/wireframes/trip_details.png)
+![Dashboard wireframes](/static/docs/wireframes/dashboard.png)
+![Request wireframes](/static/docs/wireframes/request.png)
 
 ### Colours
 The colour palette was taken from [Color Hunt](https://colorhunt.co/palette/6fb2d285c88aebd671eeeeee)<br>
