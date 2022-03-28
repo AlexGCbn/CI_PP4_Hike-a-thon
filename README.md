@@ -332,6 +332,57 @@ The project is based on Django, but contains the following resources, too:
 # Testing
 All conducted testing can be found on the separate file, [TESTING.md](TESTING.md)
 
+# Deployment
+## Note
+The project uses Cloudinary for static files hosting and it is needed for deployment and development.
+## Local Deployment
+You can clone this repository and run it locally with the following steps:
+1. Login to GitHub (https://wwww.github.com)
+2. Select the repository AlexGCbn/CI_PP4_Hike-a-thon
+3. Click the Code button and copy the HTTPS url, for example: https://github.com/AlexGCbn/CI_PP4_Hike-a-thon.git
+4. In your IDE, open a terminal and run the git clone command, for example:
+    ```git clone https://github.com/AlexGCbn/CI_PP4_Hike-a-thon.git```
+5. The repository will now be cloned in your workspace
+6. Create an env.py file(This file should be included in .gitignore, so it will not be commited) in the root folder in your project, and add in the following code with the relevant key, value pairs, and ensure you enter the correct key values<br>
+<br><code>import os</code>
+<br>
+<br><code>os.environ['SECRET_KEY'] = 'ADDED_BY_YOU'</code>
+<br><code>os.environ['DATABASE_URL'] = 'ADDED_BY_YOU'</code>
+<br><code>os.environ['CLOUDINARY_URL'] = 'ADDED_BY_YOU'</code>
+<br>
+
+7. Install the relevant packages as per the requirements.txt file
+8. In the settings.py ensure the connection is set to either the Heroku postgres database or the local sqllite database
+9. Ensure debug is set to true in the settings.py file for local development
+10. Add localhost/127.0.0.1 to the ALLOWED_HOSTS variable in settings.py
+11. Run "python3 manage.py showmigrations" to check the status of the migrations
+12. Run "python3 manage.py migrate" to migrate the database
+13. Run "python3 manage.py createsuperuser" to create a super/admin user
+14. Start the application by running <code>python3 manage.py runserver</code>
+15. Open the application in a web browser with the URL: http://127.0.0.1:8000/
+
+## Heroku
+This project can be deployed to Heroku with the following steps:
+1. Create an account on [Heroku](https://www.heroku.com/)
+2. Create an app, give it a name for example hike-a-thon, and select a region
+3. Under resources search for postgres, and add a Postgres database to the app
+4. Note the DATABASE_URL, this needs to be set as an environment variable in Heroku and your local environment variables
+5. Create a Procfile with the text: web: gunicorn hike_a_thon.wsgi
+6. Make sure you add your environment variables (env.py) to Heroku's Config Vars
+7. In the settings.py ensure the connection is to the Heroku postgres database
+8. Ensure debug is set to false in the settings.py file
+9. Add 'localhost/127.0.0.1', and 'hike-a-thon.herokuapp.com' to the ALLOWED_HOSTS variable in settings.py
+10. Run "python3 manage.py showmigrations" to check the status of the migrations
+11. Run "python3 manage.py migrate" to migrate the database
+12. Run "python3 manage.py createsuperuser" to create a super/admin user
+13. Connect the app to GitHub, and enable automatic deploys from main
+14. Click deploy to deploy your application to Heroku for the first time
+
+# Credits
+The app was created by relying on Code Institute's Django Blog walkthrough app, so a big thanks for that! 
+I would also like to thank my mentor, Mo Shami, for his continued support and encouragement through my course! 
+
+
 User stories:  
   
 First time visitor:
