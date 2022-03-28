@@ -11,8 +11,9 @@ Hike-a-thon is a hiking trips website, which permits users to register for trips
 
 ** View the live website [here](https://hike-a-thon.herokuapp.com/)**
 <br><br>
-** Website image **
+![Website hero image](/static/docs/readme-hero.png)
 
+# Table of contents
 - [Project Overview](#project-overview)
 - [UX](#ux)
     * [Strategy](#strategy)
@@ -162,8 +163,7 @@ Recurring visitor:
 Admin/Owner:
 13) As an *admin/owner* I can *add a trip* so that *I can post new trips*
 14) As an *admin/owner* I can *view trip requests* so that *I can get ideas about future trips*
-15) As an *admin/owner* I can *view trip requests* so that *I can get ideas about future trips*
-16) As an *admin/owner* I can *view a list of attendees* so that *I know who is joining each trip*
+15) As an *admin/owner* I can *view a list of attendees* so that *I know who is joining each trip*
 
 ## Design
 ### Wireframes
@@ -190,12 +190,18 @@ Nunito for the website's text
 - Navigation is consistent across all pages
 - Welcome text is displayed when the user visits the page
 
+#### User stories covered:
+1, 4
+
 ![Navigation bar image](/static/docs/features/navbar.png)
 ![Home page image](/static/docs/features/welcome.png)
 
 ### Feature 2 - About & Contact
 - Basic about information on the left (large screens)
 - Contact information on the right (large screens)
+
+#### User stories covered:
+3, 12
 
 ![About us image](/static/docs/features/about.png)
 ![Contact image](/static/docs/features/contact.png)
@@ -205,6 +211,9 @@ Nunito for the website's text
 - Paginated by 3
 - Each trip has a "Details" button, to go to the trip details
 
+#### User stories covered:
+6
+
 ![Upcoming trips image](/static/docs/features/upcoming_trips.png)
 ![Details button image](/static/docs/features/trip_register_1.png)
 
@@ -213,12 +222,18 @@ Nunito for the website's text
 - Paginated by 3
 - Each trip has a "Details" button, to go to the trip details
 
-![Upcoming trips image](/static/docs/features/past_trips.png)
+#### User stories covered:
+6
+
+![Past trips image](/static/docs/features/past_trips.png)
 ![Details button image](/static/docs/features/past_trip_detail_1.png)
 
 ### Feature 5 - Register account
 - Users can create an account
 - Template and functionality is provided by Django
+
+#### User stories covered:
+2
 
 ![Sign up page image](/static/docs/features/signup.png)
 
@@ -227,12 +242,18 @@ Nunito for the website's text
 - Template and functionality is provided by Django
 - Users will see that they are signed in on all pages
 
+#### User stories covered:
+7
+
 ![Sign in page image](/static/docs/features/login.png)
 ![Signed in text image](/static/docs/features/signed_in.png)
 
 ### Feature 7 - Sign out of account
 - Users can sign out of their account
 - Template and functionality is provided by Django
+
+#### User stories covered:
+7
 
 ![Sign out page image](/static/docs/features/logout.png)
 
@@ -241,6 +262,9 @@ Nunito for the website's text
 - They have the option to do so when they visit the trip details
 - If they register, the button will turn to "Deregister" and they will be counted towards the registered users
 - They can then deregister
+
+#### User stories covered:
+8
 
 ![Details button image](/static/docs/features/trip_register_1.png)
 ![Trip Register image](/static/docs/features/trip_register_2.png)
@@ -252,6 +276,9 @@ Nunito for the website's text
 - They need to complete the form with at least some data
 - The score they provide is added to the total score average
 - They can edit the review later or delete it
+
+#### User stories covered:
+10
 
 ![Trip review guide image](/static/docs/features/new_review_1.png)
 ![Trip score image](/static/docs/features/score_before_review.png)
@@ -270,6 +297,9 @@ Nunito for the website's text
 - All trip names are links to the trip details
 - If the user deregisters from one trip, it is removed
 
+#### User stories covered:
+5, 9
+
 ![Trip history image](/static/docs/features/registered_trips_1.png)
 ![Trip Deregister image](/static/docs/features/trip_deregister.png)
 ![Trip history image](/static/docs/features/registered_trips_2.png)
@@ -279,12 +309,18 @@ Nunito for the website's text
 - The trip request will be added to their request history
 - The admin can approve it and they will see an 'X' for not approved (default) or a checkmark if approved
 
+#### User stories covered:
+11
+
 ![Trip request image](/static/docs/features/request_1.png)
 ![Trip request image](/static/docs/features/request_2.png)
 
 ### Feature 12 - Admin panel Request page
 - Admin can see trip requests
 - They have the option to approve any they want
+
+#### User stories covered:
+14
 
 ![Admin trip request image](/static/docs/features/admin_approve_request_1.png)
 ![Admin trip request image](/static/docs/features/admin_approve_request_2.png)
@@ -296,6 +332,9 @@ Nunito for the website's text
 - They need to add necessary data to trips
 - They can choose which users to pre-populate 'registered_users' with
 
+#### User stories covered:
+13, 15
+
 ![Admin new trip image](/static/docs/features/admin_add_trip_1.png)
 ![Admin new trip image](/static/docs/features/admin_add_trip_2.png)
 ![Admin new trip image](/static/docs/features/admin_add_trip_3.png)
@@ -305,6 +344,9 @@ Nunito for the website's text
 ### Feature 14 - Footer
 - Footer contains basic contact information
 - Is always located at the bottom of the page and does not overlap with content
+
+#### User stories covered:
+4
 
 ![Footer image](/static/docs/features/footer.png)
 
