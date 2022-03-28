@@ -19,6 +19,7 @@
 - [Validation](#validation)
     * [HTML](#html)
     * [CSS](#css)
+    * [JavaScript](#javascript)
     * [Wave / Accessibility](#wave)
     * [Lighthouse](#lighthouse)
     * [Python](#python)
@@ -333,6 +334,9 @@
 ![CSS code validation](/static/docs/css_validation.png)
 
 </details>
+
+## JavaScript
+- There is no custom JavaScript code, so no testing/validation was done
 
 ## Wave / Accessibility
 - Accessibility was tested with [Web Accessibility Evaluation Tool](https://wave.webaim.org/)
