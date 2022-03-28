@@ -1,12 +1,8 @@
 # CI_PP4_Hike-a-thon
 Hike-a-thon is a hiking trips website, which permits users to register for trips that the administrator has posted. It was developed as the Portfolio Project 4 for the Code Institute Diploma in Software Development (Full Stack - E-commerce Applications).
 
-- There are two types of users, for which test accounts are provided:
-    - An administrator with the username/password of admin/admin
-    - Regular users with the username/passwords:
-        - alexT/testpassword1
-        - georgeC/testpassword1
-        - Mike.F/testpassword1
+- There are two types of users, admins and regular users.
+- Test accounts can be given on demand.
 <br>
 
 ** View the live website [here](https://hike-a-thon.herokuapp.com/)**
