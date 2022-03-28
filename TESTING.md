@@ -305,7 +305,7 @@
 #### Logout
 ![HTML logout page validation](/static/docs/html_validation/logout.png)
 
-#### Tip Details
+#### Trip Details
 - There are errors here because the description was created with Summernote, which adds HTML to the content (seen in second image)
 - Unable to remove errors without removing Summernote
 - Those errors do not affect the functionality page
@@ -337,7 +337,70 @@
 ## Wave / Accessibility
 - Accessibility was tested with [Web Accessibility Evaluation Tool](https://wave.webaim.org/)
 - All pages pass with no errors
+- Wave cannot access pages that require signed in access
 
 <details><summary>Screenshots</summary>
+
+#### Home
+![WAVE home page validation](/static/docs/wave/home.png)
+
+#### About
+![WAVE about page validation](/static/docs/wave/about.png)
+
+#### Past Trips
+![WAVE past trips page validation](/static/docs/wave/past_trips.png)
+
+#### Sign in/Login
+![WAVE login page validation](/static/docs/wave/login.png)
+- When trying to sign in:
+![WAVE login page validation](/static/docs/wave/sign_in_error.png)
+
+#### Sign up
+![WAVE sign up page validation](/static/docs/wave/register.png)
+
+#### Trip Details
+![WAVE trip details page validation](/static/docs/wave/trip_detail.png)
+
+#### Past Trip Details
+![WAVE past trip details page validation](/static/docs/wave/past_trip_detail.png)
+
+</details>
+
+## Lighthouse
+- Chrome Lighthouse was used to test page performance
+- All pages pass with a great mark
+- Most warnings are about Bootstrap, or the time it takes to load the stylesheet due to Heroku/Cloudinary
+
+<details><summary>Screenshots</summary>
+
+#### Home
+![Lighthouse home page validation](/static/docs/lighthouse/home.png)
+
+#### About
+![Lighthouse about page validation](/static/docs/lighthouse/about.png)
+
+#### Past Trips
+![Lighthouse past trips page validation](/static/docs/lighthouse/past_trips.png)
+
+#### Sign in/Login
+![Lighthouse login page validation](/static/docs/lighthouse/login.png)
+
+#### Logout
+![Lighthouse logout page validation](/static/docs/lighthouse/logout.png)
+
+#### Sign up
+![Lighthouse sign up page validation](/static/docs/lighthouse/register.png)
+
+#### Trip Details
+![Lighthouse trip details page validation](/static/docs/lighthouse/trip_detail.png)
+
+#### Past Trip Details
+![Lighthouse past trip details page validation](/static/docs/lighthouse/past_trip_detail.png)
+
+#### Dashboard
+![Lighthouse dashboard page validation](/static/docs/lighthouse/dashboard.png)
+
+#### Request
+![Lighthouse request page validation](/static/docs/lighthouse/request.png)
 
 </details>
