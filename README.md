@@ -57,7 +57,7 @@ Hike-a-thon is a hiking trips website, which permits users to register for trips
 # Project Overview
 - This project is a website for the Portfolio Project 4, part of the Code Institute Diploma in Software Development (E-commerce Applications)
 - The website is deployed using Heroku at the following URL: [Hike-a-Thon](https://hike-a-thon.herokuapp.com/)
-- The GitHub repository contains all the source code, Issues, Project (kanban board) and assets. It can be found here[here.](https://github.com/AlexGCbn/CI_PP4_Hike-a-thon)
+- The GitHub repository contains all the source code, Issues, Project (kanban board) and assets. It can be found [here.](https://github.com/AlexGCbn/CI_PP4_Hike-a-thon)
 - The website is fully responsive for all media sizes
 
 # UX
@@ -145,6 +145,7 @@ The database diagram can be seen below:<br>
 The User Stories are described below
 ### User Stories
 First time visitor:
+
 1) As a *first time visitor* I can *see a landing page* so that *I get information about the website's purpose*
 2) As a *first time visitor* I can *sign up* so that *I have an account for the website*
 3) As a *first time visitor* I can *find an about page* so that *I can get information about the owner*
@@ -153,6 +154,7 @@ First time visitor:
 6) As a *first time visitor* I can *find the trips section* so that *I see upcoming and completed trips*
 
 Recurring visitor:
+
 7) As a *recurring visitor* I can *sign in* so that *I get access to my account*
 8) As a *recurring visitor* I can *find the trip sign up* so that *I can sign up for an upcoming trip*
 9) As a *recurring visitor* I can *view all my trips* so that *I have a full history of them*
@@ -161,6 +163,7 @@ Recurring visitor:
 12) As a *recurring visitor* I can *find contact information* so that *I can contact the owner*
 
 Admin/Owner:
+
 13) As an *admin/owner* I can *add a trip* so that *I can post new trips*
 14) As an *admin/owner* I can *view trip requests* so that *I can get ideas about future trips*
 15) As an *admin/owner* I can *view a list of attendees* so that *I know who is joining each trip*
@@ -389,8 +392,7 @@ You can clone this repository and run it locally with the following steps:
     ```git clone https://github.com/AlexGCbn/CI_PP4_Hike-a-thon.git```
 5. The repository will now be cloned in your workspace
 6. Create an env.py file(This file should be included in .gitignore, so it will not be commited) in the root folder in your project, and add in the following code with the relevant key, value pairs, and ensure you enter the correct key values<br>
-<br><code>import os</code>
-<br>
+<code>import os</code>
 <br><code>os.environ['SECRET_KEY'] = 'ADDED_BY_YOU'</code>
 <br><code>os.environ['DATABASE_URL'] = 'ADDED_BY_YOU'</code>
 <br><code>os.environ['CLOUDINARY_URL'] = 'ADDED_BY_YOU'</code>
@@ -425,48 +427,4 @@ This project can be deployed to Heroku with the following steps:
 
 # Credits
 The app was created by relying on Code Institute's Django Blog walkthrough app, so a big thanks for that! 
-I would also like to thank my mentor, Mo Shami, for his continued support and encouragement through my course! 
-
-
-User stories:  
-  
-First time visitor:
-As a *first time visitor* I can *see a landing page* so that *I get information about the website's purpose*
-- Navigate to home page<br>
-As a *first time visitor* I can *sign up* so that *I have an account for the website*
-- Press "Register" > Complete form correctly > Press Sign Up<br>
-As a *first time visitor* I can *find an about page* so that *I can get information about the owner*
-- Navigate to "About" page<br>
-As a *first time visitor* I can *find the navigation bar* so that *I can navigate the page*
-- Navigate to any page and look to top<br>
-As a *first time visitor* I can *get to my dashboard* so that *I see my account details*
-- Sign in > Navigate to "Dashboard"<br>
-As a *first time visitor* I can *find the trips section* so that *I see upcoming and completed trips*
-- Navigate to home page for trips > Navigate to "Past Trips" for completed trips.<br>
-
-Recurring visitor:
-As a *recurring visitor* I can *sign in* so that *I get access to my account*
-- Press "Login" > Complete form > Press "Sign in"<br>
-As a *recurring visitor* I can *find the trip sign up* so that *I can sign up for an upcoming trip*
-- Press "Details" on wanted trip > Press "Register"<br>
-As a *recurring visitor* I can *view all my trips* so that *I have a full history of them*
-- Sign in > Press "Dashboard" > See trips<br>
-As a *recurring visitor* I can *comment on trips I have been to* so that *I can rate them and provide information*
-- Sign in > Find completed trip that user was registered to > Complete review form > Press submit<br>
-As a *recurring visitor* I can *complete a request form* so that *I can request a trip idea*
-- Sign in > Press "Dashboard" > Press "Request trip"<br>
-As a *recurring visitor* I can *find contact information* so that *I can contact the owner*
-- Navigate to "About" page > See contact information<br>
-
-Admin/Owner:
-As an *admin/owner* I can *add a trip* so that *I can post new trips*
-- On Admin panel > Navigate to Trips > Press "Add Trip" > Complete form<br>
-As an *admin/owner* I can *view trip requests* so that *I can get ideas about future trips*
-- On Admin panel > Navigate to Requests > View Requests (approve if needed)<br>
-As an *admin/owner* I can *view trip requests* so that *I can get ideas about future trips*
-- On Admin panel > Navigate to Requests > Tick request > Choose "Approve request" from options<br>
-As an *admin/owner* I can *view a list of attendees* so that *I know who is joining each trip*
-- On Admin panel > Navigate to Trips > Choose trip > Look at "Chosen registered users"<br>
-
-### Colour palette:
-https://colorhunt.co/palette/6fb2d285c88aebd671eeeeee
+<br>I would also like to thank my mentor, Mo Shami, for his continued support and encouragement through my course! 
