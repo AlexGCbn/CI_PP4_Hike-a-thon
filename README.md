@@ -144,26 +144,26 @@ The database diagram can be seen below:<br>
 The User Stories are described below
 ### User Stories
 First time visitor:
-- As a *first time visitor* I can *see a landing page* so that *I get information about the website's purpose*
-- As a *first time visitor* I can *sign up* so that *I have an account for the website*
-- As a *first time visitor* I can *find an about page* so that *I can get information about the owner*
-- As a *first time visitor* I can *find the navigation bar* so that *I can navigate the page*
-- As a *first time visitor* I can *get to my dashboard* so that *I see my account details*
-- As a *first time visitor* I can *find the trips section* so that *I see upcoming and completed trips*
+1) As a *first time visitor* I can *see a landing page* so that *I get information about the website's purpose*
+2) As a *first time visitor* I can *sign up* so that *I have an account for the website*
+3) As a *first time visitor* I can *find an about page* so that *I can get information about the owner*
+4) As a *first time visitor* I can *find the navigation bar* so that *I can navigate the page*
+5) As a *first time visitor* I can *get to my dashboard* so that *I see my account details*
+6) As a *first time visitor* I can *find the trips section* so that *I see upcoming and completed trips*
 
 Recurring visitor:
-- As a *recurring visitor* I can *sign in* so that *I get access to my account*
-- As a *recurring visitor* I can *find the trip sign up* so that *I can sign up for an upcoming trip*
-- As a *recurring visitor* I can *view all my trips* so that *I have a full history of them*
-- As a *recurring visitor* I can *comment on trips I have been to* so that *I can rate them and provide information*
-- As a *recurring visitor* I can *complete a request form* so that *I can request a trip idea*
-- As a *recurring visitor* I can *find contact information* so that *I can contact the owner*
+7) As a *recurring visitor* I can *sign in* so that *I get access to my account*
+8) As a *recurring visitor* I can *find the trip sign up* so that *I can sign up for an upcoming trip*
+9) As a *recurring visitor* I can *view all my trips* so that *I have a full history of them*
+10) As a *recurring visitor* I can *comment on trips I have been to* so that *I can rate them and provide information*
+11) As a *recurring visitor* I can *complete a request form* so that *I can request a trip idea*
+12) As a *recurring visitor* I can *find contact information* so that *I can contact the owner*
 
 Admin/Owner:
-- As an *admin/owner* I can *add a trip* so that *I can post new trips*
-- As an *admin/owner* I can *view trip requests* so that *I can get ideas about future trips*
-- As an *admin/owner* I can *view trip requests* so that *I can get ideas about future trips*
-- As an *admin/owner* I can *view a list of attendees* so that *I know who is joining each trip*
+13) As an *admin/owner* I can *add a trip* so that *I can post new trips*
+14) As an *admin/owner* I can *view trip requests* so that *I can get ideas about future trips*
+15) As an *admin/owner* I can *view trip requests* so that *I can get ideas about future trips*
+16) As an *admin/owner* I can *view a list of attendees* so that *I know who is joining each trip*
 
 ## Design
 ### Wireframes
@@ -178,6 +178,159 @@ The colour palette was taken from [Color Hunt](https://colorhunt.co/palette/6fb2
 The fonts used are from the Google Fonts library, and are the following:
 Josephin for the logo
 Nunito for the website's text
+
+# Features
+
+### Feature 1 - Navigation bar and Welcome text
+- The navigation bar has links to all pages, except the ones for each trip
+- The logo brings the user back to the home page
+- Navigation is consistent across all pages
+- Welcome text is displayed when the user visits the page
+
+![Navigation bar image](/static/docs/features/navbar.png)
+![Home page image](/static/docs/features/welcome.png)
+
+### Feature 2 - About & Contact
+- Basic about information on the left (large screens)
+- Contact information on the right (large screens)
+
+![About us image](/static/docs/features/about.png)
+![Contact image](/static/docs/features/contact.png)
+
+### Feature 3 - Upcoming trips
+- All upcoming trips are displayed
+- Paginated by 3
+- Each trip has a "Details" button, to go to the trip details
+
+![Upcoming trips image](/static/docs/features/upcoming_trips.png)
+![Details button image](/static/docs/features/trip_register_1.png)
+
+### Feature 4 - Past trips
+- All past trips are displayed
+- Paginated by 3
+- Each trip has a "Details" button, to go to the trip details
+
+![Upcoming trips image](/static/docs/features/past_trips.png)
+![Details button image](/static/docs/features/past_trip_detail_1.png)
+
+### Feature 5 - Register account
+- Users can create an account
+- Template and functionality is provided by Django
+
+![Sign up page image](/static/docs/features/signup.png)
+
+### Feature 6 - Sign in account
+- Users can sign in to their account
+- Template and functionality is provided by Django
+- Users will see that they are signed in on all pages
+
+![Sign in page image](/static/docs/features/login.png)
+![Signed in text image](/static/docs/features/signed_in.png)
+
+### Feature 7 - Sign out of account
+- Users can sign out of their account
+- Template and functionality is provided by Django
+
+![Sign out page image](/static/docs/features/logout.png)
+
+### Feature 8 - Register for trip
+- Users can register for upcoming trips
+- They have the option to do so when they visit the trip details
+- If they register, the button will turn to "Deregister" and they will be counted towards the registered users
+- They can then deregister
+
+![Details button image](/static/docs/features/trip_register_1.png)
+![Trip Register image](/static/docs/features/trip_register_2.png)
+![Details button image](/static/docs/features/trip_register_3.png)
+![Trip Deregister image](/static/docs/features/trip_deregister.png)
+
+### Feature 9 - Review trip
+- Users can review trips they have registered for and are completed
+- They need to complete the form with at least some data
+- The score they provide is added to the total score average
+- They can edit the review later or delete it
+
+![Trip review guide image](/static/docs/features/new_review_1.png)
+![Trip score image](/static/docs/features/score_before_review.png)
+![Trip review guide image](/static/docs/features/new_review_2.png)
+![Trip review guide image](/static/docs/features/new_review_3.png)
+![Trip score image](/static/docs/features/score_after_review.png)
+![Trip review edit guide image](/static/docs/features/edit_review_1.png)
+![Trip review edit guide image](/static/docs/features/edit_review_2.png)
+![Trip review edit guide image](/static/docs/features/edit_review_3.png)
+![Trip delete review image](/static/docs/features/delete_review_1.png)
+![Trip delete review image](/static/docs/features/delete_review_2.png)
+
+### Feature 10 - Registered trips (Dashboard)
+- Users can view all the trips they have registered for
+- Completed trips have a checkmark
+- All trip names are links to the trip details
+- If the user deregisters from one trip, it is removed
+
+![Trip history image](/static/docs/features/registered_trips_1.png)
+![Trip Deregister image](/static/docs/features/trip_deregister.png)
+![Trip history image](/static/docs/features/registered_trips_2.png)
+
+### Feature 11 - Request trip
+- Users can make a trip request
+- The trip request will be added to their request history
+- The admin can approve it and they will see an 'X' for not approved (default) or a checkmark if approved
+
+![Trip request image](/static/docs/features/request_1.png)
+![Trip request image](/static/docs/features/request_2.png)
+
+### Feature 12 - Admin panel Request page
+- Admin can see trip requests
+- They have the option to approve any they want
+
+![Admin trip request image](/static/docs/features/admin_approve_request_1.png)
+![Admin trip request image](/static/docs/features/admin_approve_request_2.png)
+![Admin trip request image](/static/docs/features/admin_approve_request_3.png)
+![Admin trip request image](/static/docs/features/admin_approve_request_4.png)
+
+### Feature 13 - Admin panel Trips page
+- Admin can see trip objects and add new ones
+- They need to add necessary data to trips
+- They can choose which users to pre-populate 'registered_users' with
+
+![Admin new trip image](/static/docs/features/admin_add_trip_1.png)
+![Admin new trip image](/static/docs/features/admin_add_trip_2.png)
+![Admin new trip image](/static/docs/features/admin_add_trip_3.png)
+![Admin new trip image](/static/docs/features/admin_add_trip_4.png)
+![Admin new trip image](/static/docs/features/admin_add_trip_5.png)
+
+### Feature 14 - Footer
+- Footer contains basic contact information
+- Is always located at the bottom of the page and does not overlap with content
+
+![Footer image](/static/docs/features/footer.png)
+
+# Technologies used
+## Languages
+The languages used are:
+- HTML
+- CSS
+- JavaScript (only what is created by Django - No personal code)
+- Python
+
+## Libraries and other resources
+The project is based on Django, but contains the following resources, too:
+- Bootstrap 5
+- PostgreSQL
+- Balsamiq
+- Coverage
+- HTML Markup Validation
+- CSS Validation Service
+- PEP8 Validation
+- Quick Database Diagrams
+- Crispy Forms
+- FontAwesome
+- Google Fonts
+- Github
+- Heroku
+
+# Testing
+All conducted testing can be found on the separate file, [TESTING.md](TESTING.md)
 
 User stories:  
   
